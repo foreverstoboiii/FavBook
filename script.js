@@ -49,4 +49,14 @@ function renderBooks() {
     });
 }
 
+function handleEnter(event) {
+    if (event.key === "Enter") {
+        addlist();
+    }
+}
+
+document.getElementById("inputfav").addEventListener("keypress", handleEnter);
+document.getElementById("authorfav").addEventListener("keypress", handleEnter);
+
+
 renderBooks(); // Показываем книги при загрузке страницы
