@@ -1,0 +1,141 @@
+/* === ОБНУЛЕНИЕ СТИЛЕЙ === */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* === ОСНОВА СТРАНИЦЫ === */
+body {
+  background-color: #111315;        /* глубокий серо-графитовый */
+  color: #dddddd;
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  max-width: 720px;
+  margin: 60px auto;
+  padding: 0 20px;
+}
+
+/* === ЗАГОЛОВОК (если будет) === */
+h2 {
+  font-size: 24px;
+  color: #e0e0e0;
+  text-align: center;
+  margin-bottom: 40px;
+  font-weight: 400;
+  letter-spacing: 1px;
+}
+
+/* === ИНПУТЫ + КНОПКА В ОДНОЙ СТРОКЕ === */
+.header {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+  margin-bottom: 40px;
+}
+
+/* === ПОЛЯ ВВОДА === */
+input[type="text"] {
+  background-color: #1a1c1d;
+  border: 1px solid #2a2d2f;
+  padding: 12px 16px;
+  color: #e2e2e2;
+  font-size: 15px;
+  border-radius: 5px;
+  width: 220px;
+  transition: border 0.3s, box-shadow 0.2s;
+}
+
+input[type="text"]:focus {
+  border-color: #4e8ef7;
+  box-shadow: 0 0 6px #4e8ef740;
+  outline: none;
+}
+
+input::placeholder {
+  color: #666;
+}
+
+/* === КНОПКА "ADD" === */
+#addfav {
+  background-color: #202324;
+  border: 1px solid #444;
+  color: #cccccc;
+  padding: 12px 20px;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.2s, border-color 0.2s;
+}
+
+#addfav:hover {
+  background-color: #2b2f30;
+  border-color: #555;
+  color: #ffffff;
+}
+
+/* === СПИСОК КНИГ === */
+.listofbooks {
+  margin-top: 20px;
+}
+
+ul#list {
+  list-style: none;
+  padding: 0;
+}
+
+/* === ЭЛЕМЕНТ СПИСКА === */
+li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #181a1b;
+  border: 1px solid #262a2b;
+  padding: 14px 20px;
+  border-radius: 6px;
+  margin-bottom: 14px;
+  transition: background-color 0.3s;
+}
+
+li:hover {
+  background-color: #202425;
+}
+
+/* === ТЕКСТ КНИГИ === */
+li span {
+  font-size: 15px;
+  color: #cccccc;
+}
+
+/* === КНОПКА УДАЛЕНИЯ — УМЕРЕННЫЙ КРАСНЫЙ === */
+li button {
+  background-color: transparent;
+  color: #cc4c4c;
+  border: 1px solid #cc4c4c;
+  padding: 6px 12px;
+  font-size: 13px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+li button:hover {
+  color: #fff;
+  background-color: rgba(204, 76, 76, 0.08);
+  border-color: #e06666;
+}
+
+/* === АДАПТАЦИЯ ДЛЯ МОБИЛКИ === */
+@media (max-width: 600px) {
+  .header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  input[type="text"],
+  #addfav {
+    width: 100%;
+  }
+}
