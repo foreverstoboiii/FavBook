@@ -2,15 +2,18 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="description" content="Search or add your favourite book">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap" rel="stylesheet">
-    <title>FavList</title>
+        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    <title>List of favourite books - Online</title>
 </head>
 
 <body>
     <header class="header">
+        <h1 style="position:absolute; left:-9999px;">List of Favourite Books</h1>
+
         <input type="text" id="inputfav" placeholder="Add your favorite book here...">
         <input type="text" id="authorfav" placeholder="Add the author here...">
         <button onclick="addlist()" id="addfav">Add</button>
@@ -18,9 +21,12 @@
     </header>
 
     <main class ="listofbooks">
-        <span id="list"></span>
+        <section id="list"></section>
     </main>
 
+<footer>
+        <a href="https://github.com/foreverstoboiii">GitHub</a>
+</footer>
 
 
     <script src="script.js"></script>
