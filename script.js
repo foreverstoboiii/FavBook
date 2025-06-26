@@ -59,6 +59,37 @@ document.getElementById("inputfav").addEventListener("keypress", handleEnter);
 document.getElementById("authorfav").addEventListener("keypress", handleEnter);
 
 
+
+
+// ====== Тёмная / светлая тема ======
+const togglebutton = document.getElementById('themetoggle');      // Кнопка смены темы
+const savedTheme = localStorage.getItem('theme');                 // Проверяем, была ли сохранена тема
+
+// При загрузке страницы — устанавливаем нужную тему
+if (savedTheme === 'dark') {
+    document.body.classList.add('dark-mode'); // Включаем тёмную тему
+    togglebutton.innerHTML = '<i class="fas fa-moon"></i>'; // Иконка луны
+} else {
+    document.body.classList.remove('dark-mode'); // Светлая тема
+    togglebutton.innerHTML = '<i class="fas fa-sun"></i>'; // Иконка солнца
+}
+
+// При нажатии на кнопку переключаем тему
+togglebutton.addEventListener('click', function () {
+    document.body.classList.toggle('dark-mode'); // Включаем/выключаем класс
+
+    if (document.body.classList.contains('dark-mode')) {
+        togglebutton.innerHTML = '<i class="fas fa-moon"></i>';
+        localStorage.setItem('theme', 'dark'); // Сохраняем тему как "dark"
+    } else {
+        togglebutton.innerHTML = '<i class="fas fa-sun"></i>';
+        localStorage.setItem('theme', 'light'); // Сохраняем тему как "light"
+    }
+});
+
+
+
+
 renderBooks(); // Показываем книги при загрузке страницы
 
 
