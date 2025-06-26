@@ -9,7 +9,8 @@ function addlist() {
     const input = document.getElementById("inputfav");       // Поле названия
     const aythor = document.getElementById("authorfav");     // Поле автора
     const value = capitalize(input.value.trim());
-    const authoral = capitalize(aythor.value.trim());
+   const authoral = aythor.value.trim().toUpperCase();
+
 
 
     if (value === "" || authoral === "") {
