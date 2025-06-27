@@ -7,7 +7,8 @@
 
 /* === ОСНОВА СТРАНИЦЫ === */
 body {
-  background-color: #111315;        /* глубокий серо-графитовый */
+  background-color: #111315;
+  /* глубокий серо-графитовый */
   color: #dddddd;
   font-family: 'Segoe UI', sans-serif;
   font-size: 16px;
@@ -200,6 +201,12 @@ body.dark-mode li button:hover {
 
 /* === КНОПКА ПЕРЕКЛЮЧЕНИЯ ТЕМЫ === */
 #themetoggle {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+
+
+  display: flex;
   width: 44px;
   height: 44px;
   border-radius: 50%;
@@ -207,7 +214,6 @@ body.dark-mode li button:hover {
   background-color: #1e1e1e;
   color: #fff;
   font-size: 18px;
-  display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
@@ -234,26 +240,30 @@ body.dark-mode #themetoggle:hover {
 footer {
   text-align: center;
   padding: 1rem;
-  font-size: 0.875rem; /* немного меньше основного текста */
-  color: #888;         /* нейтральный серый, не привлекает внимания */
+  font-size: 0.875rem;
+  /* немного меньше основного текста */
+  color: #888;
+  /* нейтральный серый, не привлекает внимания */
   position: fixed;
   bottom: 0;
   left: 0;
   width: 100%;
-  background: transparent; /* можно заменить на light background, если нужно */
-  z-index: 999;       /* чтобы не перекрывался */
-  pointer-events: none; /* чтобы не мешал кликам, если нужно */
+  background: transparent;
+  /* можно заменить на light background, если нужно */
+  z-index: 999;
+  /* чтобы не перекрывался */
+  pointer-events: none;
+  /* чтобы не мешал кликам, если нужно */
 }
 
 footer a {
   color: inherit;
   text-decoration: none;
-  pointer-events: auto; /* ссылка кликабельна, даже если родитель — нет */
+  pointer-events: auto;
+  /* ссылка кликабельна, даже если родитель — нет */
 }
 
 footer a:hover {
   text-decoration: underline;
   color: #555;
 }
-
-
