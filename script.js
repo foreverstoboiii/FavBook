@@ -21,49 +21,49 @@ function closeAlert() {
 
 
 function addlist() {
-    const input = document.getElementById("inputfav");       // Поле названия
-    const aythor = document.getElementById("authorfav");     // Поле автора
+    const input = document.getElementById("inputfav");            // Поле названия
+    const aythor = document.getElementById("authorfav");          // Поле автора
     const value = capitalize(input.value.trim());
-   const authoral = aythor.value.trim().toUpperCase();
+    const authoral = aythor.value.trim().toUpperCase();
 
 
-
+ 
     if (value === "" || authoral === "") {
-        showAlert("Please fill in both fields!"); // Проверка на пустоту
+        showAlert("Please fill in both fields!");                 // Проверка на пустоту
         return;
-    };             // Проверка на пустоту
+    };                                                            // Проверка на пустоту
 
     books.push({
         name: value,
         author: authoral
     });
 
-    localStorage.setItem("books", JSON.stringify(books));    // Сохраняем в localStorage
-    input.value = "";
+    localStorage.setItem("books", JSON.stringify(books));         // Сохраняем в localStorage
+    input.value = ""; 
     aythor.value = "";
     renderBooks();    
-    updateCount()                                        // Отображаем список заново
+    updateCount()                                                 // Отображаем список заново
 }
 
 function renderBooks() {
-    const list = document.getElementById("list");             // <ul> или <div>
-    list.innerHTML = "";                                      // Очищаем перед отрисовкой
+    const list = document.getElementById("list");                 // <ul> или <div>
+    list.innerHTML = "";                                          // Очищаем перед отрисовкой
 
     books.forEach((book, index) => {
-        const li = document.createElement("li");              // создаём <li>
-        li.textContent = `${book.name} (${book.author})`;     // вставляем текст
+        const li = document.createElement("li");                  // создаём <li>
+        li.textContent = `${book.name} (${book.author})`;         // вставляем текст
 
-        const deleteBtn = document.createElement("button");   // создаём кнопку
+        const deleteBtn = document.createElement("button");       // создаём кнопку
         deleteBtn.textContent = "Delete";
         deleteBtn.onclick = () => {
-            books.splice(index, 1);                            // удаляем из массива
+            books.splice(index, 1);                               // удаляем из массива
             localStorage.setItem("books", JSON.stringify(books)); // обновляем хранилище
             updateCount()
-            renderBooks();                                    // заново отображаем
+            renderBooks();                                        // заново отображаем
         };
 
-        li.appendChild(deleteBtn);                            // кнопка внутрь <li>
-        list.appendChild(li);                                 // <li> внутрь <ul>
+        li.appendChild(deleteBtn);                                // кнопка внутрь <li>
+        list.appendChild(li);                                     // <li> внутрь <ul>
     });
 }
 
@@ -125,4 +125,26 @@ togglebutton.addEventListener('click', function () {
 
 renderBooks(); // Показываем книги при загрузке страницы
 updateCount()
+
+
+
+
+const apiKey = "46afcd23583e35a84347955fc1caeeb1"; // апи
+const city = "Tashkent"; 
+
+fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`)
+  .then(res => res.json())
+  .then(data => {
+    const icon = `https://openweathermap.org/img/wn/${data.weather[0].icon}.png`;
+    const temp = Math.round(data.main.temp);
+    const weather = `${data.name}: ${temp}°C`;
+
+    document.getElementById("weather").innerHTML = `
+      <img src="${icon}" alt="weather icon">
+      <span>${weather}</span>
+    `;
+  })
+  .catch(err => {
+    document.getElementById("weather").textContent = "⚠️ Погода недоступна";
+  });
 
