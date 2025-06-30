@@ -5,6 +5,21 @@ function capitalize(str) {
     return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
 }
 
+
+function showAlert(message) {
+  // Вставляем текст
+  document.getElementById('alert-text').textContent = message;
+
+  // Показываем модальное окно
+  document.getElementById('custom-alert').style.display = 'flex';
+}
+
+function closeAlert() {
+  // Скрываем окно
+  document.getElementById('custom-alert').style.display = 'none';
+}
+
+
 function addlist() {
     const input = document.getElementById("inputfav");       // Поле названия
     const aythor = document.getElementById("authorfav");     // Поле автора
@@ -14,7 +29,7 @@ function addlist() {
 
 
     if (value === "" || authoral === "") {
-        alert("Please fill in both fields!"); // Проверка на пустоту
+        showAlert("Please fill in both fields!"); // Проверка на пустоту
         return;
     };             // Проверка на пустоту
 
@@ -26,7 +41,8 @@ function addlist() {
     localStorage.setItem("books", JSON.stringify(books));    // Сохраняем в localStorage
     input.value = "";
     aythor.value = "";
-    renderBooks();                                            // Отображаем список заново
+    renderBooks();    
+    updateCount()                                        // Отображаем список заново
 }
 
 function renderBooks() {
@@ -42,6 +58,7 @@ function renderBooks() {
         deleteBtn.onclick = () => {
             books.splice(index, 1);                            // удаляем из массива
             localStorage.setItem("books", JSON.stringify(books)); // обновляем хранилище
+            updateCount()
             renderBooks();                                    // заново отображаем
         };
 
@@ -58,6 +75,21 @@ function handleEnter(event) {
 
 document.getElementById("inputfav").addEventListener("keypress", handleEnter);
 document.getElementById("authorfav").addEventListener("keypress", handleEnter);
+
+
+
+function updateCount(){
+    let colvo = document.getElementById('count')
+    colvo.textContent = `Amount: ${books.length}`;
+
+}
+
+
+
+
+
+
+
 
 
 
@@ -92,5 +124,5 @@ togglebutton.addEventListener('click', function () {
 
 
 renderBooks(); // Показываем книги при загрузке страницы
-
+updateCount()
 
