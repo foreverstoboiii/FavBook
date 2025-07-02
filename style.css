@@ -1,3 +1,22 @@
+
+:root {
+  --color-bg: #111315;
+  --color-text: #dddddd;
+  --color-accent: #4e8ef7;
+  --color-border: #2a2d2f;
+  --color-input-bg: #1a1c1d;
+  --color-btn-bg: #202324;
+  --color-btn-hover: #2b2f30;
+
+  --font-main: 'Segoe UI', sans-serif;
+  --font-alt: 'Inter', sans-serif;
+
+  --radius: 6px;
+  --transition: 0.2s ease;
+  --padding: 16px;
+}
+
+
 /* === ОБНУЛЕНИЕ СТИЛЕЙ === */
 * {
   box-sizing: border-box;
@@ -7,16 +26,13 @@
 
 /* === ОСНОВА СТРАНИЦЫ === */
 body {
-  background-color: #111315;
-  /* глубокий серо-графитовый */
-  color: #dddddd;
-  font-family: 'Segoe UI', sans-serif;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-main);
   font-size: 16px;
   line-height: 1.6;
-  /*max-width: 720px;
-  margin: 60px auto;
-  padding: 0 20px;*/
 }
+
 
 /* === ЗАГОЛОВОК (если будет) === */
 h2 {
