@@ -13,9 +13,9 @@ body {
   font-family: 'Segoe UI', sans-serif;
   font-size: 16px;
   line-height: 1.6;
-  max-width: 720px;
+  /*max-width: 720px;
   margin: 60px auto;
-  padding: 0 20px;
+  padding: 0 20px;*/
 }
 
 /* === ЗАГОЛОВОК (если будет) === */
@@ -28,7 +28,7 @@ h2 {
   letter-spacing: 1px;
 }
 
-/* === ИНПУТЫ + КНОПКА В ОДНОЙ СТРОКЕ === */
+/* === ИНПУТЫ + КНОПКА В ОДНОЙ СТРОКЕ === 
 .header {
   display: flex;
   flex-wrap: wrap;
@@ -37,7 +37,7 @@ h2 {
   margin-bottom: 2vh;
 }
 
-/* === ПОЛЯ ВВОДА === */
+ /*=== ПОЛЯ ВВОДА === 
 input[type="text"] {
   background-color: #1a1c1d;
   border: 1px solid #2a2d2f;
@@ -48,7 +48,7 @@ input[type="text"] {
   width: 220px;
   transition: border 0.3s, box-shadow 0.2s;
 }
-
+*/
 input[type="text"]:focus {
   border-color: #4e8ef7;
   box-shadow: 0 0 6px #4e8ef740;
@@ -57,24 +57,6 @@ input[type="text"]:focus {
 
 input::placeholder {
   color: #666;
-}
-
-/* === КНОПКА "ADD" === */
-#addfav {
-  background-color: #202324;
-  border: 1px solid #444;
-  color: #cccccc;
-  padding: 12px 20px;
-  border-radius: 5px;
-  font-size: 14px;
-  cursor: pointer;
-  transition: background-color 0.2s, border-color 0.2s;
-}
-
-#addfav:hover {
-  background-color: #2b2f30;
-  border-color: #555;
-  color: #ffffff;
 }
 
 /* === СПИСОК КНИГ === */
