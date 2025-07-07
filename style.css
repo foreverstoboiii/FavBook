@@ -480,16 +480,7 @@ body.dark-mode .weather-widget img {
   filter: brightness(0.85);
 }
 
-#searchfav {
-  background-color: #1a1c1d;
-  border: 1px solid #2a2d2f;
-  padding: 12px 16px;
-  color: #e2e2e2;
-  font-size: 15px;
-  border-radius: 5px;
-  width: 370px;
-  transition: border 0.3s, box-shadow 0.2s;
-}
+
 #searchfav:focus {
   border-color: #4e8ef7;
   box-shadow: 0 0 6px #4e8ef740;
