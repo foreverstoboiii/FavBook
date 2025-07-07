@@ -50,7 +50,8 @@ function addlist() {
 
     books.push({
         name: value,
-        author: authoral
+        author: authoral,
+        date: new Date().toLocaleDateString(),
     });
 
     localStorage.setItem("books", JSON.stringify(books));         // Сохраняем в localStorage
@@ -66,7 +67,14 @@ function renderBooks(array = books) {
 
     array.forEach((book, index) => {
         const li = document.createElement("li");                  // создаём <li>
-        li.textContent = `${book.name} (${book.author})`;         // вставляем текст
+       li.innerHTML = `
+           <div class="flex justify-between items-center w-full mb-1">
+             <span class="font-semibold">${book.name} (${book.author})</span>
+             <span class="text-sm text-gray-500 mr-4">${book.date}</span>
+           </div>`;
+
+
+        // вставляем текст
 
         const deleteBtn = document.createElement("button");       // создаём кнопку
         deleteBtn.textContent = "Delete";
@@ -77,6 +85,8 @@ function renderBooks(array = books) {
             renderBooks();                                        // заново отображаем
         };
 
+
+        
         li.appendChild(deleteBtn);                                // кнопка внутрь <li>
         list.appendChild(li);                                     // <li> внутрь <ul>
     });
