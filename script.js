@@ -5,6 +5,21 @@ function capitalize(str) {
     return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
 }
 
+// Найдём поле для поиска
+const searchInput = document.getElementById("searchfav");
+
+// Когда пользователь что-то вводит в поиск
+searchInput.addEventListener("keyup", function () {
+  const query = this.value.toLowerCase(); // текст из инпута, в нижнем регистре
+
+  // Отфильтровать книги, где название включает то, что ввёл пользователь
+  const filtered = books.filter(book =>
+    book.name.toLowerCase().includes(query)
+  );
+
+  renderBooks(filtered); // показать только подходящие книги
+});
+
 
 function showAlert(message) {
   // Вставляем текст
@@ -45,11 +60,11 @@ function addlist() {
     updateCount()                                                 // Отображаем список заново
 }
 
-function renderBooks() {
+function renderBooks(array = books) {
     const list = document.getElementById("list");                 // <ul> или <div>
     list.innerHTML = "";                                          // Очищаем перед отрисовкой
 
-    books.forEach((book, index) => {
+    array.forEach((book, index) => {
         const li = document.createElement("li");                  // создаём <li>
         li.textContent = `${book.name} (${book.author})`;         // вставляем текст
 
