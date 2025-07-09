@@ -46,7 +46,7 @@ OpenWeatherMap API
 ```
 
 
-## 🧑‍💻Author
+## 💻Author
 Made with minimalism and UX focus by foreverstoboiii
 
 
