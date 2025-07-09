@@ -1,96 +1,127 @@
+// ===== ИНИЦИАЛИЗАЦИЯ =====
 let books = JSON.parse(localStorage.getItem("books")) || []; // Массив для хранения книг
 
+// ===== ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ =====
+
+// Заглавная первая буква, остальные строчные
 function capitalize(str) {
-    if (!str) return ""; // если строка пустая
+    if (!str) return ""; 
     return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
 }
 
-// Найдём поле для поиска
-const searchInput = document.getElementById("searchfav");
-
-// Когда пользователь что-то вводит в поиск
-searchInput.addEventListener("keyup", function () {
-    const query = this.value.toLowerCase(); // текст из инпута, в нижнем регистре
-
-    // Отфильтровать книги, где название включает то, что ввёл пользователь
-    const filtered = books.filter(book =>
-        book.name.toLowerCase().includes(query)
-    );
-
-    renderBooks(filtered); // показать только подходящие книги
-});
-
+// ====== АЛЕРТЫ (модальные сообщения) ======
 
 function showAlert(message) {
-    // Вставляем текст
     document.getElementById('alert-text').textContent = message;
-
-    // Показываем модальное окно
     document.getElementById('custom-alert').style.display = 'flex';
 }
 
 function closeAlert() {
-    // Скрываем окно
     document.getElementById('custom-alert').style.display = 'none';
 }
 
+// ====== ДОБАВЛЕНИЕ КНИГИ ======
 
 function addlist() {
-    const input = document.getElementById("inputfav");            // Поле названия
-    const aythor = document.getElementById("authorfav");          // Поле автора
+    const input = document.getElementById("inputfav");
+    const aythor = document.getElementById("authorfav");
+
     const value = capitalize(input.value.trim());
     const authoral = aythor.value.trim().toUpperCase();
 
-
-
+    // Проверка на пустые поля
     if (value === "" || authoral === "") {
-        showAlert("Please fill in both fields!");                 // Проверка на пустоту
+        showAlert("Please fill in both fields!");
         return;
-    };                                                            // Проверка на пустоту
+    }
 
+    // Добавление новой книги в массив
     books.push({
         name: value,
         author: authoral,
         date: new Date().toLocaleDateString(),
+        favourite: false
     });
 
-    localStorage.setItem("books", JSON.stringify(books));         // Сохраняем в localStorage
+    // Обновление данных
+    localStorage.setItem("books", JSON.stringify(books));
     input.value = "";
     aythor.value = "";
     renderBooks();
-    updateCount()                                                 // Отображаем список заново
+    updateCount();
 }
+
+// ====== РЕНДЕР СПИСКА КНИГ ======
 
 function renderBooks(array = books) {
-    const list = document.getElementById("list");                 // <ul> или <div>
-    list.innerHTML = "";                                          // Очищаем перед отрисовкой
+    const list = document.getElementById("list");
+    list.innerHTML = ""; // Очищаем перед отрисовкой
 
     array.forEach((book, index) => {
-        const li = document.createElement("li");                  // создаём <li>
+        const li = document.createElement("li");
+
         li.innerHTML = `
-           <div class="flex justify-between items-center w-full mb-1">
-             <span class="font-semibold">${book.name} (${book.author})</span>
-             <span class="text-sm text-gray-500 mr-4">${book.date}</span>
-           </div>`;
+          <div class="flex justify-between items-center w-full gap-4 px-2 py-[10px] rounded text-sm">
+            <div class="flex flex-col">
+              <span class="font-medium text-[15px] text-white">${book.name}</span>
+              <span class="text-xs text-gray-400">${book.author}</span>
+            </div>
+            <div class="flex items-center gap-4">
+              <span class="text-xs text-gray-500">${book.date}</span>
+              <button class="favorite-btn text-2xl ${book.favorite ? 'text-yellow-400' : 'text-gray-500'} hover:scale-80 transition duration-150 ease-in-out outline-none border-none">
+                ${book.favorite ? "★" : "☆"}
+              </button>
+            </div>
+          </div>
+        `;
 
-
-        // вставляем текст
-
-        const deleteBtn = document.createElement("button");       // создаём кнопку
-        deleteBtn.textContent = "Delete";
-        deleteBtn.onclick = () => {
-            books.splice(index, 1);                               // удаляем из массива
-            localStorage.setItem("books", JSON.stringify(books)); // обновляем хранилище
-            updateCount()
-            renderBooks();                                        // заново отображаем
+        // ⭐ Обработчик избранного (звёздочки)
+        const favBtn = li.querySelector(".favorite-btn");
+        favBtn.onclick = () => {
+            book.favorite = !book.favorite;
+            localStorage.setItem("books", JSON.stringify(books));
+            renderBooks();
         };
 
+        // Кнопка удаления книги
+        const deleteBtn = document.createElement("button");
+        deleteBtn.textContent = "Delete";
+        deleteBtn.className = "bg-transparent text-[#cc4c4c] border border-[#cc4c4c] px-3 py-1.5 text-[13px] rounded cursor-pointer transition-all duration-200 hover:text-white hover:bg-[rgba(170,79,79,0.08)] hover:border-[#e06666]";
 
+        deleteBtn.onclick = () => {
+            books.splice(index, 1); // удаление из массива
+            localStorage.setItem("books", JSON.stringify(books));
+            updateCount();
+            renderBooks();
+        };
 
-        li.appendChild(deleteBtn);                                // кнопка внутрь <li>
-        list.appendChild(li);                                     // <li> внутрь <ul>
+        li.appendChild(deleteBtn); // добавляем кнопку в элемент
+        list.appendChild(li);      // добавляем элемент в список
     });
 }
+
+// ====== КОЛИЧЕСТВО КНИГ ======
+
+function updateCount() {
+    const colvo = document.getElementById('count');
+    colvo.textContent = `Amount: ${books.length}`;
+}
+
+// ====== ПОИСК КНИГ ======
+
+const searchInput = document.getElementById("searchfav");
+
+searchInput.addEventListener("keyup", function () {
+    const query = this.value.toLowerCase();
+
+    const filtered = books.filter(book =>
+        book.name.toLowerCase().includes(query)
+    );
+
+    renderBooks(filtered);
+});
+
+// ====== ENTER ДЛЯ ДОБАВЛЕНИЯ ======
 
 function handleEnter(event) {
     if (event.key === "Enter") {
@@ -101,60 +132,41 @@ function handleEnter(event) {
 document.getElementById("inputfav").addEventListener("keypress", handleEnter);
 document.getElementById("authorfav").addEventListener("keypress", handleEnter);
 
+// ====== СМЕНА ТЕМЫ ======
 
+const togglebutton = document.getElementById('themetoggle');
+const savedTheme = localStorage.getItem('theme');
 
-function updateCount() {
-    let colvo = document.getElementById('count')
-    colvo.textContent = `Amount: ${books.length}`;
-
-}
-
-
-
-
-
-
-
-
-
-
-
-// ====== Тёмная / светлая тема ======
-const togglebutton = document.getElementById('themetoggle');      // Кнопка смены темы
-const savedTheme = localStorage.getItem('theme');                 // Проверяем, была ли сохранена тема
-
-// При загрузке страницы — устанавливаем нужную тему
+// Установка темы при загрузке
 if (savedTheme === 'dark') {
-    document.body.classList.add('dark-mode'); // Включаем тёмную тему
-    togglebutton.innerHTML = '<i class="fas fa-moon"></i>'; // Иконка луны
+    document.body.classList.add('dark-mode');
+    togglebutton.innerHTML = '<i class="fas fa-moon"></i>';
 } else {
-    document.body.classList.remove('dark-mode'); // Светлая тема
-    togglebutton.innerHTML = '<i class="fas fa-sun"></i>'; // Иконка солнца
+    document.body.classList.remove('dark-mode');
+    togglebutton.innerHTML = '<i class="fas fa-sun"></i>';
 }
 
-// При нажатии на кнопку переключаем тему
+// Переключение темы
 togglebutton.addEventListener('click', function () {
-    document.body.classList.toggle('dark-mode'); // Включаем/выключаем класс
+    document.body.classList.toggle('dark-mode');
 
     if (document.body.classList.contains('dark-mode')) {
         togglebutton.innerHTML = '<i class="fas fa-moon"></i>';
-        localStorage.setItem('theme', 'dark'); // Сохраняем тему как "dark"
+        localStorage.setItem('theme', 'dark');
     } else {
         togglebutton.innerHTML = '<i class="fas fa-sun"></i>';
-        localStorage.setItem('theme', 'light'); // Сохраняем тему как "light"
+        localStorage.setItem('theme', 'light');
     }
 });
 
+// ====== ПРИ ЗАГРУЗКЕ СТРАНИЦЫ ======
 
+renderBooks();
+updateCount();
 
+// ====== ПОГОДА ======
 
-renderBooks(); // Показываем книги при загрузке страницы
-updateCount()
-
-
-
-
-const apiKey = "46afcd23583e35a84347955fc1caeeb1"; // апи
+const apiKey = "46afcd23583e35a84347955fc1caeeb1";
 const city = "Tashkent";
 
 fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`)
@@ -165,11 +177,10 @@ fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&ap
         const weather = `${data.name}: ${temp}°C`;
 
         document.getElementById("weather").innerHTML = `
-      <img src="${icon}" alt="weather icon">
-      <span>${weather}</span>
-    `;
+          <img src="${icon}" alt="weather icon">
+          <span>${weather}</span>
+        `;
     })
     .catch(err => {
         document.getElementById("weather").textContent = "⚠️ Погода недоступна";
     });
-

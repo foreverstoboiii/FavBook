@@ -32,7 +32,6 @@ body {
   line-height: 1.6;
 }
 
-
 /* === ЗАГОЛОВОК (если будет) === */
 h2 {
   font-size: 24px;
@@ -52,7 +51,7 @@ h2 {
   margin-bottom: 2vh;
 }
 
- /*=== ПОЛЯ ВВОДА === 
+ === ПОЛЯ ВВОДА === 
 input[type="text"] {
   background-color: #1a1c1d;
   border: 1px solid #2a2d2f;
@@ -63,13 +62,13 @@ input[type="text"] {
   width: 220px;
   transition: border 0.3s, box-shadow 0.2s;
 }
-*/
+
 input[type="text"]:focus {
   border-color: #4e8ef7;
   box-shadow: 0 0 6px #4e8ef740;
   outline: none;
 }
-
+*/
 input::placeholder {
   color: #666;
 }
@@ -121,7 +120,6 @@ li button {
 
 li button:hover {
   color: #fff;
-  background-color: rgba(204, 76, 76, 0.08);
   border-color: #e06666;
 }
 
@@ -137,7 +135,6 @@ li button:hover {
     width: 100%;
   }
 }
-
 
 /* === СВЕТЛАЯ ТЕМА С КЛАССОМ .dark-mode === */
 body.dark-mode {
@@ -190,30 +187,25 @@ body.dark-mode li button {
 }
 
 body.dark-mode li button:hover {
-  background-color: rgba(170, 43, 43, 0.1);
   color: #000;
   border-color: #c44;
 }
-
 
 /* === КНОПКА ПЕРЕКЛЮЧЕНИЯ ТЕМЫ === */
 #themetoggle {
   position: absolute;
   top: 16px;
   right: 16px;
-
   width: 44px;
   height: 44px;
   display: flex;
   align-items: center;
   justify-content: center;
-
   background: rgba(255, 255, 255, 0.04);
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 50%;
-
   color: #eaeaea;
   font-size: 18px;
   cursor: pointer;
@@ -228,7 +220,6 @@ body.dark-mode li button:hover {
   border-color: rgba(255, 255, 255, 0.15);
 }
 
-/* 🌕 Светлая тема */
 body.dark-mode #themetoggle {
   background: rgba(255, 255, 255, 0.95);
   border: 1px solid rgba(0, 0, 0, 0.06);
@@ -250,8 +241,7 @@ body.dark-mode #themetoggle:hover {
   box-shadow: none;
 }
 
-
-
+/* === ФУТЕР === */
 footer {
   display: flex;
   text-align: center;
@@ -259,26 +249,20 @@ footer {
   gap: 0.5vh;
   padding: 1rem;
   font-size: 0.875rem;
-  /* немного меньше основного текста */
   color: #888;
-  /* нейтральный серый, не привлекает внимания */
   position: fixed;
   bottom: 0;
   left: 0;
   width: 100%;
   background: transparent;
-  /* можно заменить на light background, если нужно */
   z-index: 999;
-  /* чтобы не перекрывался */
   pointer-events: none;
-  /* чтобы не мешал кликам, если нужно */
 }
 
 footer a {
   color: inherit;
   text-decoration: none;
   pointer-events: auto;
-  /* ссылка кликабельна, даже если родитель — нет */
 }
 
 footer a:hover {
@@ -287,33 +271,23 @@ footer a:hover {
 }
 
 .v-line {
-
   width: 1px;
   height: 24px;
   background-color: #444;
   margin: 0 12px;
-
 }
 
 #count {
   font-family: 'Inter', sans-serif;
   font-size: 14px;
   color: #999;
-  /* не слишком яркий, серо-сбалансированный */
   margin-left: 1vh;
-  /* если нужно прижать вправо */
   margin-top: 8px;
-  /* отступ сверху, если под формой */
   letter-spacing: 0.2px;
-  /* лёгкая читабельность */
   user-select: none;
-  /* нельзя случайно выделить */
 }
 
-
-
-/* ====== СВЕТЛАЯ ТЕМА (у тебя это .dark-mode) ====== */
-
+/* === МОДАЛЬНОЕ ОКНО === */
 .dark-mode .modal {
   background-color: rgba(0, 0, 0, 0.25);
 }
@@ -344,9 +318,6 @@ footer a:hover {
   border-color: #999;
   color: #000;
 }
-
-
-/* ====== ТЁМНАЯ ТЕМА (по умолчанию, без .dark-mode) ====== */
 
 .modal {
   position: fixed;
@@ -407,7 +378,7 @@ footer a:hover {
   color: #fff;
 }
 
-/* ====== АНИМАЦИЯ ====== */
+/* === АНИМАЦИЯ === */
 @keyframes slideDown {
   from {
     transform: translateY(-20px);
@@ -420,7 +391,7 @@ footer a:hover {
   }
 }
 
-
+/* === ВИДЖЕТ ПОГОДЫ === */
 .weather-widget {
   position: absolute;
   top: 16px;
@@ -469,7 +440,6 @@ footer a:hover {
   letter-spacing: 0.3px;
 }
 
-
 body.dark-mode .weather-widget {
   background: rgba(255, 255, 255, 0.96);
   border: 1px solid rgba(0, 0, 0, 0.06);
@@ -486,7 +456,6 @@ body.dark-mode .weather-widget:hover {
 body.dark-mode .weather-widget img {
   filter: brightness(0.85);
 }
-
 
 #searchfav:focus {
   border-color: #4e8ef7;
@@ -506,7 +475,6 @@ body.dark-mode #searchfav {
     transform: translateY(0);
   }
 }
-
 
 @media (max-width: 600px) {
   .weather-widget {
@@ -539,7 +507,6 @@ body.dark-mode #searchfav {
 @media (max-width: 360px) {
   .weather-widget span {
     display: none;
-    /* только иконка, если очень узко */
   }
 
   .weather-widget {
