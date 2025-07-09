@@ -10,28 +10,28 @@ const searchInput = document.getElementById("searchfav");
 
 // Когда пользователь что-то вводит в поиск
 searchInput.addEventListener("keyup", function () {
-  const query = this.value.toLowerCase(); // текст из инпута, в нижнем регистре
+    const query = this.value.toLowerCase(); // текст из инпута, в нижнем регистре
 
-  // Отфильтровать книги, где название включает то, что ввёл пользователь
-  const filtered = books.filter(book =>
-    book.name.toLowerCase().includes(query)
-  );
+    // Отфильтровать книги, где название включает то, что ввёл пользователь
+    const filtered = books.filter(book =>
+        book.name.toLowerCase().includes(query)
+    );
 
-  renderBooks(filtered); // показать только подходящие книги
+    renderBooks(filtered); // показать только подходящие книги
 });
 
 
 function showAlert(message) {
-  // Вставляем текст
-  document.getElementById('alert-text').textContent = message;
+    // Вставляем текст
+    document.getElementById('alert-text').textContent = message;
 
-  // Показываем модальное окно
-  document.getElementById('custom-alert').style.display = 'flex';
+    // Показываем модальное окно
+    document.getElementById('custom-alert').style.display = 'flex';
 }
 
 function closeAlert() {
-  // Скрываем окно
-  document.getElementById('custom-alert').style.display = 'none';
+    // Скрываем окно
+    document.getElementById('custom-alert').style.display = 'none';
 }
 
 
@@ -42,7 +42,7 @@ function addlist() {
     const authoral = aythor.value.trim().toUpperCase();
 
 
- 
+
     if (value === "" || authoral === "") {
         showAlert("Please fill in both fields!");                 // Проверка на пустоту
         return;
@@ -55,9 +55,9 @@ function addlist() {
     });
 
     localStorage.setItem("books", JSON.stringify(books));         // Сохраняем в localStorage
-    input.value = ""; 
+    input.value = "";
     aythor.value = "";
-    renderBooks();    
+    renderBooks();
     updateCount()                                                 // Отображаем список заново
 }
 
@@ -67,7 +67,7 @@ function renderBooks(array = books) {
 
     array.forEach((book, index) => {
         const li = document.createElement("li");                  // создаём <li>
-       li.innerHTML = `
+        li.innerHTML = `
            <div class="flex justify-between items-center w-full mb-1">
              <span class="font-semibold">${book.name} (${book.author})</span>
              <span class="text-sm text-gray-500 mr-4">${book.date}</span>
@@ -86,7 +86,7 @@ function renderBooks(array = books) {
         };
 
 
-        
+
         li.appendChild(deleteBtn);                                // кнопка внутрь <li>
         list.appendChild(li);                                     // <li> внутрь <ul>
     });
@@ -103,7 +103,7 @@ document.getElementById("authorfav").addEventListener("keypress", handleEnter);
 
 
 
-function updateCount(){
+function updateCount() {
     let colvo = document.getElementById('count')
     colvo.textContent = `Amount: ${books.length}`;
 
@@ -155,21 +155,21 @@ updateCount()
 
 
 const apiKey = "46afcd23583e35a84347955fc1caeeb1"; // апи
-const city = "Tashkent"; 
+const city = "Tashkent";
 
 fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`)
-  .then(res => res.json())
-  .then(data => {
-    const icon = `https://openweathermap.org/img/wn/${data.weather[0].icon}.png`;
-    const temp = Math.round(data.main.temp);
-    const weather = `${data.name}: ${temp}°C`;
+    .then(res => res.json())
+    .then(data => {
+        const icon = `https://openweathermap.org/img/wn/${data.weather[0].icon}.png`;
+        const temp = Math.round(data.main.temp);
+        const weather = `${data.name}: ${temp}°C`;
 
-    document.getElementById("weather").innerHTML = `
+        document.getElementById("weather").innerHTML = `
       <img src="${icon}" alt="weather icon">
       <span>${weather}</span>
     `;
-  })
-  .catch(err => {
-    document.getElementById("weather").textContent = "⚠️ Погода недоступна";
-  });
+    })
+    .catch(err => {
+        document.getElementById("weather").textContent = "⚠️ Погода недоступна";
+    });
 

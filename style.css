@@ -1,4 +1,3 @@
-
 :root {
   --color-bg: #111315;
   --color-text: #dddddd;
@@ -287,8 +286,8 @@ footer a:hover {
   color: #555;
 }
 
-.v-line{
-   
+.v-line {
+
   width: 1px;
   height: 24px;
   background-color: #444;
@@ -299,11 +298,16 @@ footer a:hover {
 #count {
   font-family: 'Inter', sans-serif;
   font-size: 14px;
-  color: #999;              /* не слишком яркий, серо-сбалансированный */
-  margin-left: 1vh;        /* если нужно прижать вправо */
-  margin-top: 8px;          /* отступ сверху, если под формой */
-  letter-spacing: 0.2px;    /* лёгкая читабельность */
-  user-select: none;        /* нельзя случайно выделить */
+  color: #999;
+  /* не слишком яркий, серо-сбалансированный */
+  margin-left: 1vh;
+  /* если нужно прижать вправо */
+  margin-top: 8px;
+  /* отступ сверху, если под формой */
+  letter-spacing: 0.2px;
+  /* лёгкая читабельность */
+  user-select: none;
+  /* нельзя случайно выделить */
 }
 
 
@@ -346,7 +350,9 @@ footer a:hover {
 
 .modal {
   position: fixed;
-  top: 0; left: 0; right: 0;
+  top: 0;
+  left: 0;
+  right: 0;
   height: 100%;
   background-color: rgba(255, 255, 255, 0.1);
   display: none;
@@ -407,6 +413,7 @@ footer a:hover {
     transform: translateY(-20px);
     opacity: 0;
   }
+
   to {
     transform: translateY(0);
     opacity: 1;
@@ -449,7 +456,7 @@ footer a:hover {
 .weather-widget img {
   width: 24px;
   height: 24px;
-  filter: brightness(1.2) drop-shadow(0 0 1px rgba(255,255,255,0.2));
+  filter: brightness(1.2) drop-shadow(0 0 1px rgba(255, 255, 255, 0.2));
   transition: transform 0.3s ease;
 }
 
@@ -524,14 +531,15 @@ body.dark-mode #searchfav {
     font-size: 16px;
   }
 
-  #searchfav{
-    width:100% ;
+  #searchfav {
+    width: 100%;
   }
 }
 
 @media (max-width: 360px) {
   .weather-widget span {
-    display: none; /* только иконка, если очень узко */
+    display: none;
+    /* только иконка, если очень узко */
   }
 
   .weather-widget {
