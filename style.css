@@ -75,7 +75,7 @@ input::placeholder {
 
 /* === СПИСОК КНИГ === */
 .listofbooks {
-  margin-top: 20px;
+  margin-top: -5vh;
 }
 
 ul#list {
@@ -94,6 +94,7 @@ li {
   border-radius: 6px;
   margin-bottom: 14px;
   transition: background-color 0.3s;
+
 }
 
 li:hover {
@@ -250,12 +251,7 @@ footer {
   padding: 1rem;
   font-size: 0.875rem;
   color: #888;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
   background: transparent;
-  z-index: 999;
   pointer-events: none;
 }
 
@@ -277,14 +273,15 @@ footer a:hover {
   margin: 0 12px;
 }
 
+
 #count {
   font-family: 'Inter', sans-serif;
   font-size: 14px;
   color: #999;
   margin-left: 1vh;
-  margin-top: 8px;
   letter-spacing: 0.2px;
   user-select: none;
+  margin-top: -8vh;
 }
 
 /* === МОДАЛЬНОЕ ОКНО === */

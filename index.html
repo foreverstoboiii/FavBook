@@ -12,71 +12,72 @@
     
 </head>
 
-<body class="max-w-[720px] mx-auto px-5 py-20 overflow-x-hidden bg-[#111315] text-[#dddddd] font-sans">
+<body class="bg-[#111315] text-[#dddddd] font-sans">
+  <div class="min-h-screen flex flex-col max-w-[720px] mx-auto px-5">
 
-   <header class="flex flex-wrap justify-center gap-3 mb-[2vh]">
-        <h1 style="position:absolute; left:-9999px;">List of Favourite Books</h1>
-        
-         <input
-             type="text"
-             id="inputfav"
-             placeholder="Add your favorite book here..."
-             class="w-[220px] bg-[#1a1c1d] border border-[#2a2d2f] text-[#e2e2e2] text-[15px] px-4 py-3 rounded transition-all duration-200 focus:border-[#4e8ef7] focus:shadow focus:outline-none">
-        <input
-             type="text"
-             id="authorfav"
-             placeholder="Add the author here..."
-             class="w-[220px] bg-[#1a1c1d] border border-[#2a2d2f] text-[#e2e2e2] text-[15px] px-4 py-3 rounded transition-all duration-200 focus:border-[#4e8ef7] focus:shadow focus:outline-none">
-        
-        <input
-            id="searchfav"
-            type="text"
-            placeholder="Search for a book..."
-            class="w-[370px] bg-[#1a1c1d] border border-[#2a2d2f] text-[#e2e2e2] text-[15px] px-4 py-3 rounded transition-all duration-200 focus:border-[#4e8ef7] focus:shadow focus:outline-none">
+    <header class="flex flex-wrap justify-center gap-3 mb-[2vh] py-20">
+      <h1 style="position:absolute; left:-9999px;">List of Favourite Books</h1>
 
-        <button
-             onclick="addlist()"
-             id="addfav"
-             class="px-5 py-3 text-[14px] bg-[#202324] border border-[#444] text-[#ccc] rounded hover:bg-[#2b2f30] hover:border-[#555] hover:text-white transition">Add
-        </button>
-        <button
-             id="themetoggle"
-             aria-label="Смена темы"
-             class="absolute top-4 right-4 w-11 h-11 flex items-center justify-center bg-white/5 backdrop-blur border border-white/10 rounded-full text-[#eaeaea] text-[18px] shadow transition hover:scale-110 hover:bg-white/10 hover:border-white/20 dark:bg-white/90 dark:text-[#222] dark:border-black/10 dark:hover:bg-white">
-        </button>
+      <input
+        type="text"
+        id="inputfav"
+        placeholder="Add your favorite book here..."
+        class="w-[220px] bg-[#1a1c1d] border border-[#2a2d2f] text-[#e2e2e2] text-[15px] px-4 py-3 rounded transition-all duration-200 focus:border-[#4e8ef7] focus:shadow focus:outline-none">
+      <input
+        type="text"
+        id="authorfav"
+        placeholder="Add the author here..."
+        class="w-[220px] bg-[#1a1c1d] border border-[#2a2d2f] text-[#e2e2e2] text-[15px] px-4 py-3 rounded transition-all duration-200 focus:border-[#4e8ef7] focus:shadow focus:outline-none">
+
+      <input
+        id="searchfav"
+        type="text"
+        placeholder="Search for a book..."
+        class="w-[370px] bg-[#1a1c1d] border border-[#2a2d2f] text-[#e2e2e2] text-[15px] px-4 py-3 rounded transition-all duration-200 focus:border-[#4e8ef7] focus:shadow focus:outline-none">
+
+      <button
+        onclick="addlist()"
+        id="addfav"
+        class="px-5 py-3 text-[14px] bg-[#202324] border border-[#444] text-[#ccc] rounded hover:bg-[#2b2f30] hover:border-[#555] hover:text-white transition">
+        Add
+      </button>
+
+      <button
+        id="themetoggle"
+        aria-label="Смена темы"
+        class="absolute top-4 right-4 w-11 h-11 flex items-center justify-center bg-white/5 backdrop-blur border border-white/10 rounded-full text-[#eaeaea] text-[18px] shadow transition hover:scale-110 hover:bg-white/10 hover:border-white/20 dark:bg-white/90 dark:text-[#222] dark:border-black/10 dark:hover:bg-white">
+      </button>
     </header>
-    
-<div id="weather" class="weather-widget"></div>
+
+    <div id="weather" class="weather-widget"></div>
 
     <article class="colvo">
-          <div class="count" id="count"></div>
+      <div class="count" id="count"></div>
     </article>
 
+    <div id="custom-alert" class="modal">
+      <div class="modal-box">
+        <h2>Attention</h2>
+        <p id="alert-text"></p>
+        <button onclick="closeAlert()">ОК</button>
+      </div>
+    </div>
 
-
-    
-<div id="custom-alert" class="modal">
-  <div class="modal-box">
-    <h2>Attention</h2>
-    <p id="alert-text"></p>
-    <button onclick="closeAlert()">ОК</button>
-  </div>
-</div>
-
-    <main class ="listofbooks">
-        <section id="list"></section>
+    <main class="listofbooks flex-1">
+      <section id="list"></section>
     </main>
 
+    <footer class="flex justify-center items-center gap-2 py-4 text-sm text-[#888] text-center">
+      <a href="https://github.com/foreverstoboiii" class="hover:text-[#aaa]">GitHub</a>
+      <div class="v-line"></div>
+      <a href="https://github.com/foreverstoboiii" class="hover:text-[#aaa]">Instagram</a>
+      <div class="v-line"></div>
+      <a href="https://github.com/foreverstoboiii" class="hover:text-[#aaa]">Telegram</a>
+    </footer>
 
-<footer>
-        <a href="https://github.com/foreverstoboiii">GitHub</a>
-        <div class="v-line"></div>
-        <a href="https://github.com/foreverstoboiii">Instagram</a>
-        <div class="v-line"></div>
-        <a href="https://github.com/foreverstoboiii">Telegram</a>
-</footer>
+  </div>
 
-    
-    <script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
+
 </html>
