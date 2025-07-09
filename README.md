@@ -12,10 +12,12 @@ Add books and authors, search by name, delete entries, and track when each book 
 ```bash
 git clone https://github.com/foreverstoboiii/FavBook.git
 
-2. Open index.html in your browser.
+---
+
+## 2. Open index.html in your browser.
 No installations, frameworks, or build tools required — it runs fully offline.
 
-💡 Features:
+##💡 Features:
 
 •  ➕ Add a book with author
 
