@@ -50,4 +50,6 @@ OpenWeatherMap API
 Made with minimalism and UX focus by foreverstoboiii
 
 
-![Forever](https://img.shields.io/badge/%E2%88%9E-forever-000000?style=for-the-badge&logo=github&logoColor=white)
+
+> ![Forever](https://img.shields.io/badge/%E2%88%9E-forever-000000?style=for-the-badge&logo=github&logoColor=white)
+
