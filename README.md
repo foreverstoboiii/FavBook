@@ -12,13 +12,14 @@ Add books and authors, search by name, delete entries, and track when each book 
 ```bash
 git clone https://github.com/foreverstoboiii/FavBook.git
 
----
+```
 
-## 2. Open index.html in your browser.
+2. Open index.html in your browser.
+```bash
 No installations, frameworks, or build tools required — it runs fully offline.
-
-##💡 Features:
-
+```
+## 💡 Features:
+```bash
 •  ➕ Add a book with author
 
 •  🔍 Real-time search by name
@@ -32,8 +33,9 @@ No installations, frameworks, or build tools required — it runs fully offline.
 •  ☁️ Weather widget (configurable)
 
 •  📊 Live book counter
-
-🧠 Tech Stack
+```
+## 🧠 Tech Stack
+```bash
 HTML / CSS / Tailwind CSS
 
 JavaScript (Vanilla)
@@ -41,9 +43,11 @@ JavaScript (Vanilla)
 localStorage
 
 OpenWeatherMap API
+```
 
 
-
-🧑‍💻Author
+## 🧑‍💻Author
 Made with minimalism and UX focus by foreverstoboiii
 
+
+![Forever](https://img.shields.io/badge/%E2%88%9E-forever-000000?style=for-the-badge&logo=github&logoColor=white)
