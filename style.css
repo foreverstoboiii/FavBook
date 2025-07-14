@@ -96,18 +96,19 @@ li {
   transition: background-color 0.3s;
    
 }
-.fade-in-once {
+.fade-in-up {
   opacity: 0;
   transform: translateY(10px);
-  animation: fadeInOnce 1s ease forwards;
+  animation: fadeInUp 1s ease forwards;
 }
 
-@keyframes fadeInOnce {
+@keyframes fadeInUp {
   to {
     opacity: 1;
     transform: translateY(0);
   }
 }
+
 
 
 
@@ -206,8 +207,12 @@ body.dark-mode li button:hover {
   border-color: #c44;
 }
 
+
+
+
+
 /* === КНОПКА ПЕРЕКЛЮЧЕНИЯ ТЕМЫ === */
-#themetoggle {
+/*#themetoggle {
   position: absolute;
   top: 16px;
   right: 16px;
@@ -237,7 +242,23 @@ body.dark-mode li button:hover {
   background: rgba(255, 255, 255, 0.08);
   border-color: rgba(255, 255, 255, 0.15);
 }
+*/
 
+
+/* === Общие стили для фокуса === */
+#lang-toggle,
+#themetoggle {
+  outline: none;
+}
+
+#lang-toggle:focus,
+#themetoggle:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+/* === Общие стили для темной темы === */
+body.dark-mode #lang-toggle,
 body.dark-mode #themetoggle {
   background: rgba(255, 255, 255, 0.95);
   border: 1px solid rgba(0, 0, 0, 0.06);
@@ -245,19 +266,13 @@ body.dark-mode #themetoggle {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.12);
 }
 
+body.dark-mode #lang-toggle:hover,
 body.dark-mode #themetoggle:hover {
   background: rgba(255, 255, 255, 1);
   transform: scale(1.08);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4) ;
 }
 
-#themetoggle {
-  outline: none;
-}
-
-#themetoggle:focus {
-  outline: none;
-  box-shadow: none;
-}
 
 /* === ФУТЕР === */
 footer {
@@ -522,11 +537,39 @@ body.dark-mode #searchfav {
     font-size: 16px;
   }
 
+ #lang-toggle {
+    top: 10px;
+    width: 38px;
+    height: 38px;
+    font-size: 16px;
+  }
   #searchfav {
     width: 100%;
-  }
+    
 }
+#addfav {
+    width: 30%;
+    font-size: 14px;
+  }
 
+  .listofbooks {
+    margin-top: 0;
+  }
+
+  ul#list li {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  ul#list li span {
+    font-size: 14px;
+  }
+
+  ul#list li button {
+    width: 100%;
+    text-align: center;
+  }
 @media (max-width: 360px) {
   .weather-widget span {
     display: none;
@@ -547,4 +590,10 @@ body.dark-mode #searchfav {
     height: 34px;
     font-size: 15px;
   }
+  #lang-toggle {
+    width: 34px;
+    height: 34px;
+    font-size: 15px;
+  }
+}
 }

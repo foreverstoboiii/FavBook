@@ -22,46 +22,66 @@
         type="text"
         id="inputfav"
         placeholder="Add your favorite book here..."
-        class="w-[220px] bg-[#1a1c1d] border border-[#2a2d2f] text-[#e2e2e2] text-[15px] px-4 py-3 rounded transition-all duration-200 focus:border-[#4e8ef7] focus:shadow focus:outline-none">
+        class="w-[220px] bg-[#1a1c1d] border border-[#2a2d2f] text-[#e2e2e2] text-[15px] px-4 py-3 rounded transition-all duration-200 focus:border-[#4e8ef7] focus:shadow focus:outline-none"
+        data-i18n="booksname">
+        
       <input
         type="text"
         id="authorfav"
         placeholder="Add the author here..."
-        class="w-[220px] bg-[#1a1c1d] border border-[#2a2d2f] text-[#e2e2e2] text-[15px] px-4 py-3 rounded transition-all duration-200 focus:border-[#4e8ef7] focus:shadow focus:outline-none">
+        class="w-[220px] bg-[#1a1c1d] border border-[#2a2d2f] text-[#e2e2e2] text-[15px] px-4 py-3 rounded transition-all duration-200 focus:border-[#4e8ef7] focus:shadow focus:outline-none"
+        data-i18n="author">
 
+    <div class="relative flex items-center gap-3 flex-1 min-w-[220px] max-w-[450px]">
+
+         <!-- Поиск -->
+         <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 pointer-events-none"></i>
       <input
         id="searchfav"
         type="text"
         placeholder="Search for a book..."
-        class="w-[370px] bg-[#1a1c1d] border border-[#2a2d2f] text-[#e2e2e2] text-[15px] px-4 py-3 rounded transition-all duration-200 focus:border-[#4e8ef7] focus:shadow focus:outline-none">
+        class="pl-10 w-[230px] sm:w-[340px] bg-[#1a1c1d] border border-[#2a2d2f] text-[#e2e2e2] text-[15px]  px-4 py-3 rounded transition-all duration-200 focus:border-[#4e8ef7] focus:shadow focus:outline-none"
+        data-i18n="searchbar">
 
+  <!-- Кнопка -->
       <button
         onclick="addlist()"
         id="addfav"
-        class="px-5 py-3 text-[14px] bg-[#202324] border border-[#444] text-[#ccc] rounded hover:bg-[#2b2f30] hover:border-[#555] hover:text-white transition">
+        class="w-[100px] h-[48px] px-4 text-[14px] bg-[#202324] border border-[#444] text-[#ccc] rounded hover:bg-[#2b2f30] hover:border-[#555] hover:text-white transition"
+        data-i18n="add">
         Add
       </button>
+    </div>
 
-      <button
+     <button
         id="themetoggle"
         aria-label="Смена темы"
-        class="absolute top-4 right-4 w-11 h-11 flex items-center justify-center bg-white/5 backdrop-blur border border-white/10 rounded-full text-[#eaeaea] text-[18px] shadow transition hover:scale-110 hover:bg-white/10 hover:border-white/20 dark:bg-white/90 dark:text-[#222] dark:border-black/10 dark:hover:bg-white">
-      </button>
+        class="absolute top-4 right-4 w-11 h-11 flex items-center justify-center bg-white/5 backdrop-blur border border-white/10 rounded-full text-[#eaeaea] text-[18px] shadow z-[1000] transition-all duration-500 ease-in-out hover:scale-[1.02] hover:bg-white/10 hover:border-white/20">
+     </button>
+
+     <button
+         id="lang-toggle"
+         aria-label="Смена языка"
+         class="absolute top-4 right-[70px] w-11 h-11 flex items-center justify-center bg-white/5 backdrop-blur border border-white/10 rounded-full text-[#eaeaea] text-[18px] shadow z-[1000] transition-all duration-50 ease-in-out hover:scale-[1.02] hover:bg-white/10 hover:border-white/20">🌐
+     </button>
+
+
     </header>
 
     <div id="weather" class="weather-widget"></div>
 
     <article class="colvo">
-      <div class="count" id="count"></div>
+      <div class="count" id="count" data-i18n="amount"></div>
     </article>
 
     <div id="custom-alert" class="modal">
-      <div class="modal-box">
-        <h2>Attention</h2>
-        <p id="alert-text"></p>
-        <button onclick="closeAlert()">ОК</button>
-      </div>
-    </div>
+  <div class="modal-box">
+    <h2 data-i18n="modalTitle">Attention</h2>
+    <p id="alert-text" data-i18n="modalText"></p>
+    <button onclick="closeAlert()" data-i18n="ok">OK</button>
+  </div>
+</div>
+
 
     <main class="listofbooks flex-1">
       <section id="list"></section>
@@ -78,6 +98,7 @@
   </div>
 
   <script src="script.js"></script>
+  <script src="International.js"></script>
 </body>
 
 </html>

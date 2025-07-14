@@ -61,8 +61,7 @@ function renderBooks(array = books) {
 
     array.forEach((book, index) => {
         const li = document.createElement("li");
-
-
+    
         li.innerHTML = `
           <div class="flex justify-between items-center w-full gap-4 px-2 py-[10px] rounded text-sm">
             <div class="flex flex-col">
@@ -88,7 +87,7 @@ function renderBooks(array = books) {
 
         // Кнопка удаления книги
         const deleteBtn = document.createElement("button");
-        deleteBtn.textContent = "Delete";
+        deleteBtn.textContent = translations[currentLang]["delete"];
         deleteBtn.className = "bg-transparent text-[#cc4c4c] border border-[#cc4c4c] px-3 py-1.5 text-[13px] rounded cursor-pointer transition-all duration-200 hover:text-white hover:bg-[rgba(170,79,79,0.08)] hover:border-[#e06666]";
 
         deleteBtn.onclick = () => {
@@ -101,29 +100,17 @@ function renderBooks(array = books) {
         li.appendChild(deleteBtn); // добавляем кнопку в элемент
         list.appendChild(li);      // добавляем элемент в список
     });
-
-   
+  
+    
 }
 
-
-
-document.addEventListener("DOMContentLoaded", () => {
-  renderBooks(); // Сначала отрисуем
-
-  // Затем добавим анимацию только тем элементам, которые уже есть
-  const listItems = document.querySelectorAll("#list li");
-  listItems.forEach((el, i) => {
-    el.classList.add("fade-in-once");
-    el.style.animationDelay = `${i * 0.07}s`; // плавная задержка
-  });
-});
 
 
 // ====== КОЛИЧЕСТВО КНИГ ======
 
 function updateCount() {
     const colvo = document.getElementById('count');
-    colvo.textContent = `Amount: ${books.length}`;
+    colvo.textContent = `${translations[currentLang]["amount"]} ${books.length}`;
 }
 
 // ====== ПОИСК КНИГ ======
@@ -180,8 +167,7 @@ togglebutton.addEventListener('click', function () {
 
 // ====== ПРИ ЗАГРУЗКЕ СТРАНИЦЫ ======
 
-renderBooks();
-updateCount();
+
 
 // ====== ПОГОДА ======
 
