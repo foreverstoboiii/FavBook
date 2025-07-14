@@ -57,8 +57,11 @@ function renderBooks(array = books) {
     const list = document.getElementById("list");
     list.innerHTML = ""; // Очищаем перед отрисовкой
 
+  
+
     array.forEach((book, index) => {
         const li = document.createElement("li");
+
 
         li.innerHTML = `
           <div class="flex justify-between items-center w-full gap-4 px-2 py-[10px] rounded text-sm">
@@ -98,7 +101,23 @@ function renderBooks(array = books) {
         li.appendChild(deleteBtn); // добавляем кнопку в элемент
         list.appendChild(li);      // добавляем элемент в список
     });
+
+   
 }
+
+
+
+document.addEventListener("DOMContentLoaded", () => {
+  renderBooks(); // Сначала отрисуем
+
+  // Затем добавим анимацию только тем элементам, которые уже есть
+  const listItems = document.querySelectorAll("#list li");
+  listItems.forEach((el, i) => {
+    el.classList.add("fade-in-once");
+    el.style.animationDelay = `${i * 0.07}s`; // плавная задержка
+  });
+});
+
 
 // ====== КОЛИЧЕСТВО КНИГ ======
 
