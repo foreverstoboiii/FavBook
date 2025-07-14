@@ -18,6 +18,14 @@ git clone https://github.com/foreverstoboiii/FavBook.git
 ```bash
 No installations, frameworks, or build tools required — it runs fully offline.
 ```
+
+## 📸 Preview
+
+Here is a preview of the Book Tracker app in dark mode:
+
+![Book Tracker Screenshot](FAVBOOKS.png)
+
+
 ## 💡 Features:
 ```bash
 •  ➕ Add a book with author
