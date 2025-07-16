@@ -153,6 +153,7 @@ li button:hover {
 li{
   height: 70px;
   margin-top: -5px;
+  
 }
 
   input[type="text"],
@@ -162,6 +163,12 @@ li{
   li button{
     display: flex;
    
+  }
+
+  li span {
+    font-size: 10px;
+    margin-left: -15px;
+    
   }
 }
 
@@ -567,14 +574,11 @@ body.dark-mode #searchfav {
 
   }
 
-  .listofbooks {
-    
-  }
-
   ul#list li {
     flex-direction: column;
     align-items: flex-start;
-    gap: 8px;
+    gap: 8px;;
+
   }
 
   ul#list li span {
@@ -610,6 +614,6 @@ body.dark-mode #searchfav {
     height: 34px;
     font-size: 15px;
   }
-  
+ 
 }
 }

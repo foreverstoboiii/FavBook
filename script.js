@@ -65,8 +65,8 @@ function renderBooks(array = books) {
         li.innerHTML = `
           <div class="flex justify-between items-center w-full gap-4 px-2 py-[10px] rounded text-sm">
             <div class="flex flex-col" title="${book.name} - ${book.author}">
-              <span class=" font-medium text-[15px] text-white truncate max-w-[160px] block">${book.name}</span>
-              <span class="text-xs text-gray-400 truncate max-w-[160px] block">${book.author}</span>
+              <span class="text-white truncate max-w-[100px] block">${book.name}</span>
+              <span class="text-gray-400 truncate max-w-[100px] block">${book.author}</span>
             </div>
             <div class="flex items-center gap-4">
               <span class="text-xs text-gray-500">${book.date}</span>
