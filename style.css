@@ -148,6 +148,11 @@ li button:hover {
     align-items: stretch;
   }
 
+li{
+  height: 70px;
+  margin-top: -5px;
+}
+
   input[type="text"],
   #addfav {
     width: 100%;
