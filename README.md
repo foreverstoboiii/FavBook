@@ -23,7 +23,7 @@ No installations, frameworks, or build tools required — it runs fully offline.
 
 Here is a preview of the Book Tracker app in dark mode:
 
-![Book Tracker Screenshot](FAVBOOKS.png)
+![Book Tracker Screenshot](images/FAVBOOKS.png)
 
 
 ## 💡 Features:
