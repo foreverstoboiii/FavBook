@@ -558,13 +558,13 @@ body.dark-mode #searchfav {
   }
   #searchfav {
     width: 100%;
-    margin-left: -1%;
+ 
     
 }
 #addfav {
     width: 30%;
     font-size: 14px;
-    margin-right: -1%;
+
   }
 
   .listofbooks {
