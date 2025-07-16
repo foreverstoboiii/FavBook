@@ -64,13 +64,13 @@ function renderBooks(array = books) {
     
         li.innerHTML = `
           <div class="flex justify-between items-center w-full gap-4 px-2 py-[10px] rounded text-sm">
-            <div class="flex flex-col">
-              <span class="font-medium text-[15px] text-white">${book.name}</span>
-              <span class="text-xs text-gray-400">${book.author}</span>
+            <div class="flex flex-col overflow-hidden w-[160px] sm:w-[240px] md:w-[320px] lg:w-[450px]" title="${book.name} - ${book.author}">
+              <span class=" font-medium text-[15px] text-white truncate block">${book.name}</span>
+              <span class="text-xs text-gray-400 truncate block">${book.author}</span>
             </div>
             <div class="flex items-center gap-4">
               <span class="text-xs text-gray-500">${book.date}</span>
-              <button class="favorite-btn text-2xl ${book.favorite ? 'text-yellow-400' : 'text-gray-500'} hover:scale-80 transition duration-150 ease-in-out outline-none border-none">
+              <button class="favorite-btn text-2xl ${book.favorite ? 'text-yellow-400' : 'text-gray-500'} -translate-x-3 hover:scale-80 transition duration-150 ease-in-out outline-none border-none">
                 ${book.favorite ? "★" : "☆"}
               </button>
             </div>
@@ -88,7 +88,7 @@ function renderBooks(array = books) {
         // Кнопка удаления книги
         const deleteBtn = document.createElement("button");
         deleteBtn.textContent = translations[currentLang]["delete"];
-        deleteBtn.className = "bg-transparent text-[#cc4c4c] border border-[#cc4c4c] px-3 py-1.5 text-[13px] rounded cursor-pointer transition-all duration-200 hover:text-white hover:bg-[rgba(170,79,79,0.08)] hover:border-[#e06666]";
+        deleteBtn.className = "bg-transparent text-[#cc4c4c] shrink-0 border border-[#cc4c4c] -translate-x-4 px-3 py-1.5 text-[13px] rounded cursor-pointer transition-all duration-200 hover:text-white hover:bg-[rgba(170,79,79,0.08)] hover:border-[#e06666]";
 
         deleteBtn.onclick = () => {
             books.splice(index, 1); // удаление из массива

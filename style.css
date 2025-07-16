@@ -132,6 +132,8 @@ li button {
   border-radius: 4px;
   cursor: pointer;
   transition: all 0.2s ease;
+  margin-left: -3px;
+  
 }
 
 li button:hover {
@@ -149,6 +151,11 @@ li button:hover {
   input[type="text"],
   #addfav {
     width: 100%;
+  }
+  li button{
+    display: flex;
+    margin-left: 20px;
+    margin-right: -20px;
   }
 }
 
