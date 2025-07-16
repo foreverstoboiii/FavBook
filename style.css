@@ -148,6 +148,8 @@ li button:hover {
     align-items: stretch;
   }
 
+
+
 li{
   height: 70px;
   margin-top: -5px;
@@ -324,7 +326,7 @@ footer a:hover {
   margin-left: 1vh;
   letter-spacing: 0.2px;
   user-select: none;
-  margin-top: -8vh;
+  margin-top: -9vh;
     opacity: 0;
     animation: FaDes 5s ease forwards;
     animation-delay: (0s);
@@ -556,15 +558,17 @@ body.dark-mode #searchfav {
   }
   #searchfav {
     width: 100%;
+    margin-left: -1%;
     
 }
 #addfav {
     width: 30%;
     font-size: 14px;
+    margin-right: -1%;
   }
 
   .listofbooks {
-    margin-top: 0;
+    
   }
 
   ul#list li {
@@ -606,5 +610,6 @@ body.dark-mode #searchfav {
     height: 34px;
     font-size: 15px;
   }
+  
 }
 }
