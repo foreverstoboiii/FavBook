@@ -172,7 +172,7 @@ togglebutton.addEventListener('click', function () {
 // ====== ПОГОДА ======
 
 const apiKey = "46afcd23583e35a84347955fc1caeeb1";
-const city = "Tashkent";
+const city = translations[currentLang]["cit"];
 
 fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`)
     .then(res => res.json())
@@ -187,5 +187,6 @@ fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&ap
         `;
     })
     .catch(err => {
-        document.getElementById("weather").textContent = "⚠️ Погода недоступна";
+         document.getElementById("weather").textContent =
+            currentLang === "ru" ? "⚠️ Погода недоступна" : "⚠️ Weather unavailable";
     });

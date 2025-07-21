@@ -8,7 +8,8 @@ const translations = {
     amount: "Total books:",
     delete: "Delete",
     modalTitle: "Attention!",
-    fillFields: "Please fill in both fields!"
+    fillFields: "Please fill in both fields!",
+    cit: "Tashkent"
   },
   ru: {
     title: "Избранные книги",
@@ -19,7 +20,8 @@ const translations = {
     amount: "Всего книг: ",
     delete: "Удалить",
     modalTitle: "Внимание!",
-    fillFields: "Пожалуйста, заполните оба поля!"
+    fillFields: "Пожалуйста, заполните оба поля!",
+    cit: "Ташкент"
   }
 };
 
