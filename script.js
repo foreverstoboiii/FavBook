@@ -31,7 +31,7 @@ function addlist() {
 
     // Проверка на пустые поля
     if (value === "" || authoral === "") {
-        showAlert("Please fill in both fields!");
+        showAlert(translations[currentLang]["fillFields"]);
         return;
     }
 

@@ -5,8 +5,10 @@ const translations = {
     author: "Add the author here...",
     searchbar: "Search for a book...",
     add: "Add",
-    amount: "Amount: ",
+    amount: "Total books:",
     delete: "Delete",
+    modalTitle: "Attention!",
+    fillFields: "Please fill in both fields!"
   },
   ru: {
     title: "Избранные книги",
@@ -14,8 +16,10 @@ const translations = {
     author: "Добавьте автора здесь...",
     searchbar: "Поиск книги...",
     add: "Добавить",
-    amount: "Количество:",
+    amount: "Всего книг: ",
     delete: "Удалить",
+    modalTitle: "Внимание!",
+    fillFields: "Пожалуйста, заполните оба поля!"
   }
 };
 
