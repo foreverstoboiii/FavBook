@@ -1,0 +1,19 @@
+{
+  "name": "favbook-1",
+  "version": "1.0.0",
+  "description": "FAVBOOK",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/foreverstoboiii/FavBook.git"
+  },
+  "author": "FOREVER",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/foreverstoboiii/FavBook/issues"
+  },
+  "homepage": "https://github.com/foreverstoboiii/FavBook#readme"
+}
