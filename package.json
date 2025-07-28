@@ -4,8 +4,7 @@
   "description": "FAVBOOK",
   "main": "script.js",
   "scripts": {
-    "start": "server.js"
-
+    "start": "serverexpress.js"
   },
   "repository": {
     "type": "git",
@@ -16,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/foreverstoboiii/FavBook/issues"
   },
-  "homepage": "https://github.com/foreverstoboiii/FavBook#readme"
+  "homepage": "https://github.com/foreverstoboiii/FavBook#readme",
+  "dependencies": {
+    "express": "^5.1.0"
+  }
 }
