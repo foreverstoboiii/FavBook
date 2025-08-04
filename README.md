@@ -1,7 +1,7 @@
 # 📚 Favourite Books Tracker
 
 A clean and lightweight web app for managing your favourite books.  
-Add books and authors, search by name, delete entries, and track when each book was added — all stored in `localStorage`.
+You can add books, mark your favorites, and view real-time weather—all in one polished interface. The app uses a custom Express.js backend with JSON file storage (db.json).
 
 ---
 
@@ -14,43 +14,50 @@ git clone https://github.com/foreverstoboiii/FavBook.git
 
 ```
 
-2. Open index.html in your browser.
+2. Install dependencies.
 ```bash
-No installations, frameworks, or build tools required — it runs fully offline.
+npm install
+```
+
+3. Start the Express server.
+```bash
+npm start
+```
+4. Open your browser and go to:
+```bash
+http://localhost:3000
 ```
 
 ## 📸 Preview
 
 Here is a preview of the Book Tracker app in dark mode:
 
-![Book Tracker Screenshot](images/FAVBOOKS.png)
+![Book Tracker Screenshot](images/FAVBOOKS2.png)
 
 
 ## 💡 Features:
 ```bash
-•  ➕ Add a book with author
+• 📘 Add and remove books
 
-•  🔍 Real-time search by name
+• ⭐ Mark books as favorites
 
-•  🗑️ Delete books
+• 🌍 View current weather information (via external API)
 
-•  📅 Automatically shows date added
+• 🌓 Toggle between light and dark themes
 
-•  🌗 Light/Dark theme toggle
+• 💾 Server-side data storage with Express and db.json
 
-•  ☁️ Weather widget (configurable)
+• 💡 Responsive design with smooth user experience
 
-•  📊 Live book counter
+• 🧠 Clean code and modular structure
 ```
 ## 🧠 Tech Stack
 ```bash
-HTML / CSS / Tailwind CSS
+• Frontend: HTML, CSS, JavaScript
 
-JavaScript (Vanilla)
+• Backend: Node.js, Express.js
 
-localStorage
-
-OpenWeatherMap API
+• Database: JSON file (db.json)
 ```
 
 
