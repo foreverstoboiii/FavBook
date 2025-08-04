@@ -1,5 +1,19 @@
 // ===== ИНИЦИАЛИЗАЦИЯ =====
-let books = JSON.parse(localStorage.getItem("books")) || []; // Массив для хранения книг
+// let books = JSON.parse(localStorage.getItem("books")) || []; // Массив для хранения книг
+
+let books = []; // Теперь пустой массив, будем наполнять с сервера
+
+// [NEW] Загружаем книги с сервера при запуске страницы
+async function fetchBooks() {
+    try {
+        const res = await fetch('/api/books');
+        books = await res.json();
+        renderBooks();
+        updateCount();
+    } catch (err) {
+        showAlert("⚠️ Не удалось загрузить книги с сервера.");
+    }
+}
 
 // ===== ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ =====
 
@@ -21,34 +35,38 @@ function closeAlert() {
 }
 
 // ====== ДОБАВЛЕНИЕ КНИГИ ======
-
-function addlist() {
+async function addlist() {
     const input = document.getElementById("inputfav");
     const aythor = document.getElementById("authorfav");
 
     const value = capitalize(input.value.trim());
     const authoral = aythor.value.trim().toUpperCase();
 
-    // Проверка на пустые поля
     if (value === "" || authoral === "") {
         showAlert(translations[currentLang]["fillFields"]);
         return;
     }
 
-    // Добавление новой книги в массив
-    books.push({
+    const newBook = {
         name: value,
         author: authoral,
         date: new Date().toLocaleDateString(),
-        favourite: false
-    });
+        favorite: false
+    };
 
-    // Обновление данных
-    localStorage.setItem("books", JSON.stringify(books));
-    input.value = "";
-    aythor.value = "";
-    renderBooks();
-    updateCount();
+    try {
+        await fetch('/api/books', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(newBook)
+        });
+
+        input.value = "";
+        aythor.value = "";
+        fetchBooks();
+    } catch (err) {
+        showAlert("⚠️ Ошибка при добавлении книги.");
+    }
 }
 
 // ====== РЕНДЕР СПИСКА КНИГ ======
@@ -79,23 +97,36 @@ function renderBooks(array = books) {
 
         // ⭐ Обработчик избранного (звёздочки)
         const favBtn = li.querySelector(".favorite-btn");
-        favBtn.onclick = () => {
-            book.favorite = !book.favorite;
-            localStorage.setItem("books", JSON.stringify(books));
-            renderBooks();
-        };
+        favBtn.onclick = async () => {
+    book.favorite = !book.favorite;
+    try {
+        await fetch(`/api/books/${book.id}`, {
+            method: 'PATCH',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(book)
+        });
+        fetchBooks();
+    } catch (err) {
+        showAlert("⚠️ Не удалось обновить книгу.");
+    }
+};
 
         // Кнопка удаления книги
         const deleteBtn = document.createElement("button");
         deleteBtn.textContent = translations[currentLang]["delete"];
         deleteBtn.className = "bg-transparent text-[#cc4c4c]  border border-[#cc4c4c]  px-3 py-1.5 text-[13px] rounded cursor-pointer transition-all duration-200 hover:text-white hover:bg-[rgba(170,79,79,0.08)] hover:border-[#e06666]";
 
-        deleteBtn.onclick = () => {
-            books.splice(index, 1); // удаление из массива
-            localStorage.setItem("books", JSON.stringify(books));
-            updateCount();
-            renderBooks();
+        deleteBtn.onclick = async () => {
+            try {
+                await fetch(`/api/books/${book.id}`, {
+                    method: 'DELETE'
+                });
+                fetchBooks();
+            } catch (err) {
+                showAlert("⚠️ Не удалось удалить книгу.");
+            }
         };
+
 
         li.appendChild(deleteBtn); // добавляем кнопку в элемент
         list.appendChild(li);      // добавляем элемент в список
@@ -167,7 +198,7 @@ togglebutton.addEventListener('click', function () {
 
 // ====== ПРИ ЗАГРУЗКЕ СТРАНИЦЫ ======
 
-
+fetchBooks();
 
 // ====== ПОГОДА ======
 

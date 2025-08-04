@@ -1,0 +1,18 @@
+{
+  "books": [
+    {
+      "name": "Wd",
+      "author": "WDWDWDWD",
+      "date": "04.08.2025",
+      "favorite": false,
+      "id": 1754295963645
+    },
+    {
+      "name": "Helloooo",
+      "author": "EFEFFEF",
+      "date": "04.08.2025",
+      "favorite": false,
+      "id": 1754296102224
+    }
+  ]
+}
