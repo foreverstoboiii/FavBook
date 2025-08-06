@@ -289,7 +289,8 @@ body.dark-mode li button:hover {
 
 /* === Общие стили для темной темы === */
 body.dark-mode #lang-toggle,
-body.dark-mode #themetoggle {
+body.dark-mode #themetoggle, 
+body.dark-mode #aboutus {
   background: rgba(255, 255, 255, 0.95);
   border: 1px solid rgba(0, 0, 0, 0.06);
   color: #222;
@@ -297,7 +298,8 @@ body.dark-mode #themetoggle {
 }
 
 body.dark-mode #lang-toggle:hover,
-body.dark-mode #themetoggle:hover {
+body.dark-mode #themetoggle:hover,
+body.dark-mode #aboutus:hover {
   background: rgba(255, 255, 255, 1);
   transform: scale(1.08);
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4) ;
@@ -525,6 +527,7 @@ body.dark-mode .weather-widget img {
   filter: brightness(0.85);
 }
 
+
 #searchfav:focus {
   border-color: #4e8ef7;
   box-shadow: 0 0 6px #4e8ef740;
@@ -533,7 +536,7 @@ body.dark-mode .weather-widget img {
 
 body.dark-mode #searchfav {
   background-color: #ffffff;
-  border: 1px solid #ccc;
+  
   color: #111;
 }
 

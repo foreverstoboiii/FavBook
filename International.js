@@ -9,7 +9,8 @@ const translations = {
     delete: "Delete",
     modalTitle: "Attention!",
     fillFields: "Please fill in both fields!",
-    cit: "Tashkent"
+    cit: "Tashkent",
+    about: "About"
   },
   ru: {
     title: "Избранные книги",
@@ -21,7 +22,8 @@ const translations = {
     delete: "Удалить",
     modalTitle: "Внимание!",
     fillFields: "Пожалуйста, заполните оба поля!",
-    cit: "Ташкент"
+    cit: "Ташкент",
+    about: "О нас"
   }
 };
 
