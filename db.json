@@ -1,18 +1,32 @@
 {
   "books": [
     {
-      "name": "Wd",
-      "author": "WDWDWDWD",
+      "name": "Alchemist",
+      "author": "POELO KOELO",
       "date": "04.08.2025",
-      "favorite": false,
-      "id": 1754295963645
+      "favorite": true,
+      "id": 1754300458037
     },
     {
-      "name": "Helloooo",
-      "author": "EFEFFEF",
+      "name": "Wonderfull js",
+      "author": "ANONIM",
+      "date": "04.08.2025",
+      "favorite": true,
+      "id": 1754300499672
+    },
+    {
+      "name": "Atomic habits",
+      "author": "ROBERT GRINN",
       "date": "04.08.2025",
       "favorite": false,
-      "id": 1754296102224
+      "id": 1754300542096
+    },
+    {
+      "name": "Иди туда - где страшно",
+      "author": "ДЖИМ ЛОУЛЕСС",
+      "date": "04.08.2025",
+      "favorite": false,
+      "id": 1754300574706
     }
   ]
 }
