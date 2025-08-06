@@ -9,6 +9,12 @@ const dbpath = path.join(__dirname, '../db.json');
 
 app.use(express.json());
 
+
+// app.get('/about', (req, res) => {
+//   res.sendFile(path.join(__dirname, '..', 'html_templates', 'about.html'))
+// });
+
+
 // Обслуживаем все статические файлы из корня проекта
 app.use(express.static(path.join(__dirname, '..')));
 
@@ -16,6 +22,13 @@ app.get('/api/books', (req, res) => {
   const db = JSON.parse(fs.readFileSync(dbpath, 'utf-8'));
   res.json(db.books);
 })
+
+
+
+// app.use((req, res) => {
+//   res.status(404).sendFile(path.join(__dirname, '..', 'html_templates', 'error.html'));
+// });
+
 
 // API: добавить книгу
 app.post('/api/books', (req, res) => {
@@ -41,7 +54,9 @@ app.patch('/api/books/:id', (req, res) => {
   const db = JSON.parse(fs.readFileSync(dbpath, 'utf-8'));
   const id = Number(req.params.id);
   const updatedData = req.body;
-
+   console.log('ID from URL:', req.params.id);
+   console.log('Parsed ID:', id);
+   console.log('All IDs in DB:', db.books.map(b => b.id));
   const bookIndex = db.books.findIndex(book => book.id === id);
   if (bookIndex === -1) {
     return res.status(404).json({ message: 'Книга не найдена' });
@@ -53,6 +68,8 @@ app.patch('/api/books/:id', (req, res) => {
   fs.writeFileSync(dbpath, JSON.stringify(db, null, 2));
   res.json(db.books[bookIndex]);
 });
+
+
 
 // Запуск сервера
 app.listen(PORT, () => {
