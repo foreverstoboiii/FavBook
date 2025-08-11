@@ -62,7 +62,7 @@ Here is a preview of the Book Tracker app in dark mode:
 
 
 ## 💻Author
-Made with minimalism and UX focus by foreverstoboiii
+Made with minimalism and UX focus by foreverstoboiii.
 
 
 
