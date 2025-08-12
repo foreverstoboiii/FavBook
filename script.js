@@ -166,6 +166,21 @@ function handleEnter(event) {
     }
 }
 
+document.addEventListener("keydown", function (e) {
+    // Проверяем, что нажата именно клавиша \
+    if (e.key === "\\") {
+        e.preventDefault(); // Отменяем стандартное действие (если есть)
+        
+        const searchInput = document.querySelector("#searchfav"); // ID поля поиска
+        if (searchInput) {
+            searchInput.focus(); // Перемещаем фокус в поле
+            searchInput.select(); // Выделяем текст, если он есть
+        }
+    }
+});
+
+
+
 document.getElementById("inputfav").addEventListener("keypress", handleEnter);
 document.getElementById("authorfav").addEventListener("keypress", handleEnter);
 
