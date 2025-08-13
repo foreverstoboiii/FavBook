@@ -32,7 +32,7 @@ http://localhost:3000
 
 Login page:
 
-![Book Tracker Screenshot](images/Login-page.png)
+![Book Tracker Screenshot](images/Login-page-v2.png)
 
 Here is a preview of the Book Tracker app in dark mode:
 
