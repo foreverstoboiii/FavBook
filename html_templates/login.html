@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>FavBook — Login</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  body {
+    background-color: #111315;
+    font-family: 'Inter', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    color: #ddd;
+  }
+
+  .bg-book {
+    background-image: url('https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&w=800&q=80');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 3rem 2rem;
+  }
+
+  .bg-book::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom right, rgba(17,19,21,0.8), rgba(17,19,21,0.5));
+    z-index: 0;
+  }
+
+  .overlay-text {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    color: #e2e2e2;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 1s ease forwards;
+  }
+
+  .overlay-text h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    animation: fadeInUp 1s ease forwards;
+    animation-delay: 0.3s;
+  }
+
+  .overlay-text p {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    max-width: 250px;
+    animation: fadeInUp 1s ease forwards;
+    animation-delay: 0.6s;
+  }
+
+  @keyframes fadeInUp {
+    0% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  input, button, a {
+    transition: all 0.2s ease-in-out;
+  }
+
+  input:focus {
+    border-color: #4e8ef7;
+    box-shadow: 0 0 3px rgba(78,142,247,0.3);
+    outline: none;
+  }
+
+  button:hover, a:hover {
+    background-color: #1f2122;
+  }
+</style>
+</head>
+<body>
+
+<div class="max-w-4xl w-full bg-[#1a1c1d] border border-[#2a2d2f] rounded-2xl shadow-lg overflow-hidden flex">
+
+  <!-- Левая колонка -->
+  <div class="hidden md:flex w-1/2 border-r border-[#2a2d2f] bg-book">
+    <div class="overlay-text">
+      <h1>FavBook</h1>
+      <p>Track your favorite books and authors. Your personal library awaits.</p>
+    </div>
+  </div>
+
+  <!-- Правая колонка — форма -->
+  <div class="flex-1 p-10 flex flex-col justify-center fade-slide">
+    <h2 class="text-xl font-semibold mb-6">Sign in to your account</h2>
+
+    <form class="space-y-4" method="POST"  action="/login">
+      <div>
+        <label for="email" class="block text-sm mb-1">Email</label>
+        <input id="email"  name="email"  type="email" placeholder="you@example.com"
+          class="w-full px-4 py-2 bg-[#111315] border border-[#2a2d2f] text-[#e2e2e2] text-sm rounded-lg"/>
+      </div>
+
+      <div>
+        <label for="password" class="block text-sm mb-1">Password</label>
+        <input id="password" name="password" type="password" placeholder="••••••••"
+          class="w-full px-4 py-2 bg-[#111315] border border-[#2a2d2f] text-[#e2e2e2] text-sm rounded-lg"/>
+      </div>
+
+      <div class="flex items-center justify-between text-sm">
+        <label class="flex items-center gap-2 cursor-pointer">
+          <input type="checkbox" class="w-4 h-4 rounded bg-[#111315] border-[#2a2d2f]">
+          Remember me
+        </label>
+        <a href="#" class="text-[#4e8ef7]">Forgot password?</a>
+      </div>
+
+      <button type="submit"
+        class="w-full py-3 px-4 bg-[#202324] border border-[#444] text-[#ccc] rounded-lg">
+        Sign In
+      </button>
+
+      <div class="flex items-center my-4">
+        <div class="flex-grow h-px bg-[#2a2d2f]"></div>
+        <span class="px-3 text-[#555] text-xs">or</span>
+        <div class="flex-grow h-px bg-[#2a2d2f]"></div>
+      </div>
+
+      <a href="./register.html"
+        class="block w-full py-3 px-4 bg-[#111315] border border-[#2a2d2f] text-[#ccc] text-center rounded-lg">
+        Create account
+      </a>
+    </form>
+  </div>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/js/all.min.js"></script>
+</body>
+</html>

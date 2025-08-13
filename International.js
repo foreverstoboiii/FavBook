@@ -59,12 +59,12 @@ function updateTranslations() {
 
 function toggleLanguage() {
   currentLang = currentLang === "en" ? "ru" : "en";
-  localStorage.setItem("lang",currentLang);
+  localStorage.setItem("lang", currentLang);
   updateTranslations();
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-     const savedLang = localStorage.getItem("lang");
+  const savedLang = localStorage.getItem("lang");
   if (savedLang && translations[savedLang]) {
     currentLang = savedLang;
   }
