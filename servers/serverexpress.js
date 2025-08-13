@@ -69,7 +69,10 @@ app.patch('/api/books/:id', (req, res) => {
   res.json(db.books[bookIndex]);
 });
 
-
+// Обработка 404 — ДОЛЖНА идти в самом конце
+app.use((req, res) => {
+  res.status(404).sendFile(path.join(__dirname, '../html_templates', 'error.html'));
+});
 
 // Запуск сервера
 app.listen(PORT, () => {
