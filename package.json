@@ -4,7 +4,7 @@
   "description": "FAVBOOK",
   "main": "script.js",
   "scripts": {
-    "start": "serverexpress.js"
+    "start": "node ./servers/serverexpress.js"
   },
   "repository": {
     "type": "git",
