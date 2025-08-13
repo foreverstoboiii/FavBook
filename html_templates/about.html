@@ -18,6 +18,9 @@
       animation: fadeUp 0.6s ease forwards;
       opacity: 0;
     }
+    .delay-1 { animation-delay: 0.1s; }
+    .delay-2 { animation-delay: 0.25s; }
+    .delay-3 { animation-delay: 0.4s; }
   </style>
 </head>
 <body class="bg-neutral-950 text-neutral-100 font-sans leading-relaxed selection:bg-[var(--accent-color)]/30">
@@ -41,8 +44,8 @@
   <main class="max-w-3xl mx-auto px-6 py-16 space-y-16">
 
     <!-- About Project -->
-    <section class="fade-up" style="animation-delay: 0.1s">
-      <h2 class="text-2xl font-semibold mb-4 border-b border-neutral-800 pb-2 text-[var(--accent-color)]">
+    <section class="fade-up delay-1">
+      <h2 class="text-2xl font-semibold mb-4 border-b border-neutral-800 pb-2 text-[var(--accent-color)] drop-shadow-[0_0_6px_rgba(95,163,163,0.3)]">
         What is FavBook
       </h2>
       <p class="text-neutral-300 text-base leading-7">
@@ -52,11 +55,13 @@
     </section>
 
     <!-- Divider -->
-    <div class="border-t border-neutral-800 mx-auto w-2/3"></div>
+    <div class="border-t border-neutral-800 mx-auto w-2/3 fade-up delay-2"></div>
 
     <!-- About Me -->
-    <section class="bg-neutral-900 border border-neutral-800 rounded-lg p-8 shadow-lg shadow-black/30 fade-up" style="animation-delay: 0.3s">
-      <h2 class="text-2xl font-semibold mb-4 border-b border-neutral-800 pb-2 text-[var(--accent-color)]">About Me</h2>
+    <section class="bg-neutral-900 border border-neutral-800 rounded-lg p-8 shadow-lg shadow-black/30 fade-up delay-3">
+      <h2 class="text-2xl font-semibold mb-4 border-b border-neutral-800 pb-2 text-[var(--accent-color)] drop-shadow-[0_0_6px_rgba(95,163,163,0.3)]">
+        About Me
+      </h2>
       <div class="space-y-4 text-neutral-300 text-base leading-7">
         <p>
           I’m <span class="text-white font-medium">forever</span> — a frontend developer focused on precision, performance, and user experience.
@@ -82,19 +87,14 @@
   </main>
 
   <!-- Footer -->
-  <footer class="text-center text-neutral-500 text-xs py-6 border-t border-neutral-800">
+  <footer class="text-center text-neutral-500 text-xs py-6 border-t border-neutral-800 fade-up delay-3">
     © 2025 FavBook — built by <span class="text-white">forever</span>
   </footer>
 
   <script>
-    const fadeElements = document.querySelectorAll('.fade-up');
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) entry.target.style.opacity = 1;
-      });
-    }, { threshold: 0.1 });
-
-    fadeElements.forEach(el => observer.observe(el));
+    document.querySelectorAll('.fade-up').forEach(el => {
+      el.style.opacity = 1;
+    });
   </script>
 
 </body>

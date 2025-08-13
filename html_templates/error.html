@@ -9,28 +9,38 @@
     :root {
       --accent-color: #5fa3a3; /* спокойный teal */
     }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(12px); }
       to { opacity: 1; transform: translateY(0); }
     }
-    .fade-in {
-      animation: fadeIn 0.6s ease forwards;
+    .fade-up {
+      animation: fadeUp 0.6s ease forwards;
       opacity: 0;
     }
+    .delay-1 { animation-delay: 0.1s; }
+    .delay-2 { animation-delay: 0.25s; }
+    .delay-3 { animation-delay: 0.4s; }
   </style>
 </head>
 <body class="bg-neutral-950 text-neutral-100 font-sans flex items-center justify-center min-h-screen">
 
-  <div class="text-center fade-in">
-    <h1 class="text-6xl font-bold text-[var(--accent-color)] mb-4">ERROR 404</h1>
-    <p class="text-neutral-400 mb-8">The page you’re looking for doesn’t exist.</p>
-    <a href="/" class="px-5 py-2.5 bg-neutral-900 border border-neutral-800 rounded-md text-sm font-medium text-neutral-200 hover:border-[var(--accent-color)] hover:text-[var(--accent-color)] transition-colors">
-      Go Home
+  <div class="text-center">
+    <h1 class="fade-up delay-1 text-6xl font-bold text-[var(--accent-color)] mb-4 drop-shadow-[0_0_6px_rgba(95,163,163,0.3)]">
+      ERROR 404
+    </h1>
+    <p class="fade-up delay-2 text-neutral-400 mb-8">
+      The page you’re looking for doesn’t exist.
+    </p>
+    <a href="/" 
+       class="fade-up delay-3 inline-block px-5 py-2.5 bg-neutral-900 border border-neutral-800 rounded-md text-sm font-medium text-neutral-200 hover:border-[var(--accent-color)] hover:text-[var(--accent-color)] hover:bg-neutral-800/50 transition-colors">
+       Go Home
     </a>
   </div>
 
   <script>
-    document.querySelector('.fade-in').style.opacity = 1;
+    document.querySelectorAll('.fade-up').forEach(el => {
+      setTimeout(() => el.style.opacity = 1, parseFloat(getComputedStyle(el).animationDelay) * 1000);
+    });
   </script>
 
 </body>
