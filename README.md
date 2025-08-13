@@ -30,9 +30,13 @@ http://localhost:3000
 
 ## 📸 Preview
 
+Login page:
+
+![Book Tracker Screenshot](images/Login-page.png)
+
 Here is a preview of the Book Tracker app in dark mode:
 
-![Book Tracker Screenshot](images/FAVBOOKS2.png)
+![Book Tracker Screenshot](images/FAVBOOKV3.png)
 
 
 ## 💡 Features:
