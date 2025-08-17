@@ -87,6 +87,32 @@
   button:hover, a:hover {
     background-color: #1f2122;
   }
+  
+  @media (max-width: 768px) {
+    .max-w-4xl {
+      max-width: 90vw;
+      flex-direction: column;
+      border-radius: 1rem;
+    }
+    .bg-book {
+      display: none;
+    }
+    .flex-1 {
+      padding: rem 1rem;
+    }
+  }
+  @media (max-width: 480px) {
+    .max-w-4xl {
+      max-width: 60vw;
+      border-radius: 0.5rem;
+    }
+    .flex-1 {
+      padding: rem 0.5rem;
+    }
+  }
+    
+  
+
 </style>
 </head>
 <body>
