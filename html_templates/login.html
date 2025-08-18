@@ -89,27 +89,65 @@
   }
   
   @media (max-width: 768px) {
-    .max-w-4xl {
-      max-width: 90vw;
-      flex-direction: column;
-      border-radius: 1rem;
-    }
-    .bg-book {
-      display: none;
-    }
-    .flex-1 {
-      padding: rem 1rem;
-    }
+  /* фон всей страницы — подложка с книгой */
+  body {
+    background-image: url('https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&w=800&q=80');
+    background-size: cover;
+    background-position: center;
+    position: relative;
   }
-  @media (max-width: 480px) {
-    .max-w-4xl {
-      max-width: 60vw;
-      border-radius: 0.5rem;
-    }
-    .flex-1 {
-      padding: rem 0.5rem;
-    }
+  body::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(17,19,21,0.7); /* лёгкое затемнение поверх фона */
+    z-index: 0;
   }
+
+  /* делаем общий контейнер прозрачным, чтобы не перекрывал фон */
+  .max-w-4xl {
+    position: relative;
+    z-index: 1;
+    background: transparent;         /* убираем плотный фон */
+    border: none;                    /* границу тоже на карточку формы перенесём */
+    box-shadow: none;
+    flex-direction: column;
+    max-width: 95vw;
+    border-radius: 1rem;
+    overflow: hidden;
+  }
+
+  /* САМА ПАНЕЛЬ ФОРМЫ — стеклянная карточка */
+  .form-card {
+    background: rgba(26,28,29,0.55); /* прозрачность формы */
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 16px;
+    padding: 2rem 1.5rem;
+  }
+
+  /* поля и кнопки тоже слегка прозрачные, чтобы лежали в том же стиле */
+  .form-card input {
+    background: rgba(17,19,21,0.65);
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+  .form-card button {
+    background: rgba(32,35,36,0.7);
+    border: 1px solid rgba(255,255,255,0.12);
+  }
+  .form-card a {
+    background: rgba(17,19,21,0.4);
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+}
+
+@media (max-width: 480px) {
+  .form-card { border-radius: 12px; padding: 1.5rem 1rem; }
+  h2 { font-size: 1.1rem; }
+  input, button, a { font-size: 0.85rem; }
+}
+
     
   
 
@@ -128,8 +166,22 @@
   </div>
 
   <!-- Правая колонка — форма -->
-  <div class="flex-1 p-10 flex flex-col justify-center fade-slide">
+<div class="flex-1 p-10 flex flex-col justify-center fade-slide">
+
+
+  
+
+
+    <!-- Заголовок и описание только для мобильной версии -->
+    <div class="text-center mb-6 md:hidden">
+      <h1 class="text-3xl font-bold mb-2">FavBook</h1>
+      <p class="text-sm text-gray-400">
+        Track your favorite books and authors. <br> Your personal library awaits.
+      </p>
+    </div>
+
     <h2 class="text-xl font-semibold mb-6">Sign in to your account</h2>
+
 
     <form class="space-y-4" method="POST"  action="/login">
       <div>
