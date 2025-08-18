@@ -570,10 +570,10 @@ body.dark-mode #searchfav {
 
  #aboutus {
     top: 10px;
-    
-    width: 50px;
     height: 38px;
-    font-size: 10px;
+    font-size: 12px;
+    width: auto;              /* ширина под текст */
+    white-space: nowrap;  
  }
 
  #lang-toggle {
