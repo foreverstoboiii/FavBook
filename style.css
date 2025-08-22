@@ -104,6 +104,17 @@ li {
   
    
 }
+
+#opensearchlist{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #181a1b;
+  border: 1px solid #262a2b;
+  padding: 14px 20px;
+  border-radius: 6px;
+  margin-bottom: 14px;
+}
 .fade-in-up {
   opacity: 0;
   transform: translateY(10px);

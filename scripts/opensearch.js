@@ -79,7 +79,7 @@ statusBar.insertAdjacentElement('afterend', resultsContainer);
       const safeCover = encodeURIComponent(cover);
 
       return `
-        <div class="flex gap-4 items-center border border-[#2a2d2f] bg-[#202324] rounded-lg p-3 hover:bg-[#26292b] transition">
+        <div class="flex justify-between gap-4 items-center border border-[#2a2d2f] bg-[#202324] rounded-lg px-2 py-[10px] hover:bg-[#26292b] transition">
           <img src="${cover}" loading="lazy" alt="${title}" class="w-[55px] h-[80px] object-cover rounded-md"/>
           <div class="flex-1">
             <div class="text-sm font-semibold text-white">${title}</div>
