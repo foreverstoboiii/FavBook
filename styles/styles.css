@@ -1,0 +1,61 @@
+/* === Контейнер списка === */
+.listofbooks {
+  margin-top: -5vh;
+}
+
+ul#list {
+  list-style: none;
+  padding: 0;
+}
+
+/* === Элемент списка (универсальный) === */
+.list-item {
+  @apply flex justify-between items-center w-full gap-4 px-2 py-[10px] rounded text-sm;
+  background-color: #1b1818;
+  border: 1px solid #262a2b;
+  padding: 14px 20px;
+  border-radius: 6px;
+  margin-bottom: 14px;
+  transition: background-color 0.2s ease-in-out;
+
+  height: 70px;
+  margin-top: -5px;
+  flex-direction: column; /* из второй группы */
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.list-item:hover {
+  background-color: #202425;
+}
+
+/* === Текст внутри элемента === */
+.list-item span {
+  font-size: 14px; /* можно менять, если нужен другой размер */
+  color: #cccccc;
+  margin-left: -15px;
+}
+
+/* === Кнопка удаления === */
+.list-btn {
+  @apply flex items-center justify-center rounded cursor-pointer transition-all;
+  background-color: transparent;
+  color: #cc4c4c;
+  border: 1px solid #cc4c4c;
+  padding: 6px 12px;
+  font-size: 13px;
+  border-radius: 4px;
+  width: 100%;
+  text-align: center;
+}
+
+.list-btn:hover {
+  color: #fff;
+  border-color: #e06666;
+}
+
+/* === Инпут и кнопка добавления === */
+input[type="text"],
+#addfav {
+  width: 100%;
+}

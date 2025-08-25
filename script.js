@@ -81,7 +81,8 @@ function renderBooks(array = books) {
         const li = document.createElement("li");
     
         li.innerHTML = `
-          <div class="flex justify-between items-center w-full gap-4 px-2 py-[10px] rounded text-sm">
+        <div class="flex justify-between items-center w-full gap-4 px-2 py-[10px] rounded text-sm">
+         
             <div class="flex flex-col" title="${book.name} - ${book.author}">
               <span class="text-white truncate max-w-[100px] block">${book.name}</span>
               <span class="text-gray-400 truncate max-w-[100px] block">${book.author}</span>
@@ -93,6 +94,8 @@ function renderBooks(array = books) {
               </button>
             </div>
           </div>
+    
+
         `;
 
         // ⭐ Обработчик избранного (звёздочки)
