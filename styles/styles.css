@@ -1,4 +1,4 @@
-/* === Контейнер списка === */
+/* === СПИСОК КНИГ === */
 .listofbooks {
   margin-top: -5vh;
 }
@@ -8,45 +8,102 @@ ul#list {
   padding: 0;
 }
 
-/* === Элемент списка (универсальный) === */
+/* === ЭЛЕМЕНТ СПИСКА (аналог li) === */
 .list-item {
-  @apply flex justify-between items-center w-full gap-4 px-2 py-[10px] rounded text-sm;
+  display: flex !important; 
+  flex-direction: row;          /* всё в ряд */
+  align-items: center;
+  justify-content: space-between;
   background-color: #1b1818;
   border: 1px solid #262a2b;
   padding: 14px 20px;
   border-radius: 6px;
   margin-bottom: 14px;
+  margin-top: 12px;
   transition: background-color 0.2s ease-in-out;
-
-  height: 70px;
-  margin-top: -5px;
-  flex-direction: column; /* из второй группы */
-  align-items: flex-start;
-  gap: 8px;
 }
 
 .list-item:hover {
   background-color: #202425;
 }
 
-/* === Текст внутри элемента === */
-.list-item span {
-  font-size: 14px; /* можно менять, если нужен другой размер */
+/* === Светлая тема для элементов списка === */
+body.dark-mode .list-item {
+  background-color: #ffffff;
+  border: 1px solid #d6d6d6;
+}
+
+body.dark-mode .list-item:hover {
+  background-color: #f1f1f1;
+}
+
+/* === Блок с названием и автором === */
+.book-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  flex: 1 1 auto; /* занимает всё слева */
+}
+
+/* === Название книги === */
+.book-title {
+  font-size: 15px;       /* как li span */
+  color: #ffffff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 180px;
+}
+
+body.dark-mode .book-title {
+  color: #2a2a2a;
+}
+
+/* === Автор === */
+.book-author {
+  font-size: 15px;
   color: #cccccc;
-  margin-left: -15px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 180px;
+}
+
+body.dark-mode .book-author {
+  color: #2a2a2a;
+}
+
+/* === Правая колонка (дата, кнопки и пр.) === */
+.book-meta {
+  margin-left: auto;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* === Год === */
+.book-year {
+  font-size: 13px;
+  color: #dddddd;
+  white-space: nowrap;
+}
+
+body.dark-mode .book-year {
+  color: #2a2a2a;
 }
 
 /* === Кнопка удаления === */
 .list-btn {
-  @apply flex items-center justify-center rounded cursor-pointer transition-all;
   background-color: transparent;
   color: #cc4c4c;
   border: 1px solid #cc4c4c;
   padding: 6px 12px;
   font-size: 13px;
   border-radius: 4px;
-  width: 100%;
-  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
 
 .list-btn:hover {
@@ -54,8 +111,39 @@ ul#list {
   border-color: #e06666;
 }
 
-/* === Инпут и кнопка добавления === */
-input[type="text"],
-#addfav {
-  width: 100%;
+body.dark-mode .list-btn {
+  color: #aa2b2b;
+  border-color: #aa2b2b;
+}
+
+body.dark-mode .list-btn:hover {
+  color: #000;
+  border-color: #c44;
+}
+
+/* === АДАПТАЦИЯ ДЛЯ МОБИЛКИ === */
+@media (max-width: 600px) {
+  .list-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    height: auto;
+    margin-top: -5px;
+  }
+
+  .book-title,
+  .book-author {
+    font-size: 14px;
+    max-width: 100%;
+  }
+
+  .book-year {
+    font-size: 12px;
+    margin-top: 2px;
+  }
+
+  .list-btn {
+    width: 100%;
+    text-align: center;
+  }
 }

@@ -5,114 +5,105 @@
     <meta name="description" content="Search or add your favourite book">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- <link rel="stylesheet" href="styles/styles.css"> -->
-        <link rel="stylesheet" href="style.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/styles.css">
+    <link rel="stylesheet" href="./styles/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap" rel="stylesheet">
     <title>Favourite Books Tracker</title>
-    
 </head>
 
 <body class="bg-[#111315] text-[#dddddd] font-sans">
-  <div class="min-h-screen flex flex-col max-w-[720px] mx-auto px-5">
+    <div class="min-h-screen flex flex-col max-w-[720px] mx-auto px-5">
 
-    <header class="flex flex-wrap justify-center gap-3 mb-[2vh] py-20">
-      <h1 style="position:absolute; left:-9999px;">List of Favourite Books</h1>
+        <header class="flex flex-wrap justify-center gap-3 mb-[2vh] py-20">
+            <h1 style="position:absolute; left:-9999px;">List of Favourite Books</h1>
 
-      <input
-        type="text"
-        id="inputfav"
-        placeholder="Add your favorite book here..."
-        class="w-[220px] bg-[#1a1c1d] border border-[#2a2d2f] text-[#e2e2e2] text-[15px] px-4 py-3 rounded transition-all duration-200 focus:border-[#4e8ef7] focus:shadow focus:outline-none"
-        data-i18n="booksname">
-        
-      <input
-        type="text"
-        id="authorfav"
-        placeholder="Add the author here..."
-        class="w-[220px] bg-[#1a1c1d] border border-[#2a2d2f] text-[#e2e2e2] text-[15px] px-4 py-3 rounded transition-all duration-200 focus:border-[#4e8ef7] focus:shadow focus:outline-none"
-        data-i18n="author">
+            <input
+                type="text"
+                id="inputfav"
+                placeholder="Add your favorite book here..."
+                class="w-[220px] bg-[#1a1c1d] border border-[#2a2d2f] text-[#e2e2e2] text-[15px] px-4 py-3 rounded transition-all duration-200 focus:border-[#4e8ef7] focus:shadow focus:outline-none"
+                data-i18n="booksname">
 
-    <div class="relative flex items-center gap-3 flex-1 min-w-[220px] max-w-[450px]">
+            <input
+                type="text"
+                id="authorfav"
+                placeholder="Add the author here..."
+                class="w-[220px] bg-[#1a1c1d] border border-[#2a2d2f] text-[#e2e2e2] text-[15px] px-4 py-3 rounded transition-all duration-200 focus:border-[#4e8ef7] focus:shadow focus:outline-none"
+                data-i18n="author">
 
-        
-         <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 pointer-events-none"></i>
-      <input
-        id="searchfav"
-        type="text"
-        placeholder="Search for a book..."
-        class="pl-10 w-[230px] sm:w-[340px] bg-[#1a1c1d] border border-[#2a2d2f] text-[#e2e2e2] text-[15px]  px-4 py-3 rounded transition-all duration-200 focus:border-[#4e8ef7] focus:shadow focus:outline-none"
-        data-i18n="searchbar">
+            <div class="relative flex items-center gap-3 flex-1 min-w-[220px] max-w-[450px]">
+                <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 pointer-events-none"></i>
+                <input
+                    id="searchfav"
+                    type="text"
+                    placeholder="Search for a book..."
+                    class="pl-10 w-[230px] sm:w-[340px] bg-[#1a1c1d] border border-[#2a2d2f] text-[#e2e2e2] text-[15px] px-4 py-3 rounded transition-all duration-200 focus:border-[#4e8ef7] focus:shadow focus:outline-none"
+                    data-i18n="searchbar">
 
+                <button
+                    onclick="addlist()"
+                    id="addfav"
+                    class="w-[100px] h-[48px] px-4 text-[14px] bg-[#202324] border border-[#444] text-[#ccc] rounded hover:bg-[#2b2f30] hover:border-[#555] hover:text-white transition"
+                    data-i18n="add">
+                    Add
+                </button>
+            </div>
 
-      <button
-        onclick="addlist()"
-        id="addfav"
-        class="w-[100px] h-[48px] px-4 text-[14px] bg-[#202324] border border-[#444] text-[#ccc] rounded hover:bg-[#2b2f30] hover:border-[#555] hover:text-white transition"
-        data-i18n="add">
-        Add
-      </button>
+            <a href="./html_templates/about.html"
+                id="aboutus"
+                aria-label="About"
+                class="absolute top-4 right-[125px] h-11 px-5 flex items-center justify-center bg-white/5 backdrop-blur border border-white/10 rounded-full text-[#eaeaea] text-sm font-medium shadow z-[1000] transition-all duration-300 ease-in-out hover:scale-[1.02] hover:bg-white/10 hover:border-white/20"
+                data-i18n="about">
+                About
+            </a>
+
+            <button
+                id="themetoggle"
+                aria-label="Смена темы"
+                class="absolute top-4 right-4 w-11 h-11 flex items-center justify-center bg-white/5 backdrop-blur border border-white/10 rounded-full text-[#eaeaea] text-[18px] shadow z-[1000] transition-all duration-500 ease-in-out hover:scale-[1.02] hover:bg-white/10 hover:border-white/20">
+            </button>
+
+            <button
+                id="lang-toggle"
+                aria-label="Смена языка"
+                class="absolute top-4 right-[70px] w-11 h-11 flex items-center justify-center bg-white/5 backdrop-blur border border-white/10 rounded-full text-[#eaeaea] text-[18px] shadow z-[1000] transition-all duration-50 ease-in-out hover:scale-[1.02] hover:bg-white/10 hover:border-white/20">
+                🌐
+            </button>
+        </header>
+
+        <div id="weather" class="weather-widget"></div>
+
+        <article class="colvo">
+            <div class="count" id="count" data-i18n="amount"></div>
+            <div id="search-status"></div>
+        </article>
+
+        <div id="custom-alert" class="modal">
+            <div class="modal-box">
+                <h2 data-i18n="modalTitle">Attention</h2>
+                <p id="alert-text" data-i18n="modalText"></p>
+                <button onclick="closeAlert()" data-i18n="ok">OK</button>
+            </div>
+        </div>
+
+        <main class="listofbooks flex-1">
+            <div id="search-results" class="mt-4 space-y-3 w-full"></div>
+            <section id="list"></section>
+        </main>
+
+        <footer class="flex justify-center items-center gap-2 py-4 text-sm text-[#888] text-center">
+            <a href="https://github.com/foreverstoboiii" class="hover:text-[#aaa]">GitHub</a>
+            <div class="v-line"></div>
+            <a href="https://github.com/foreverstoboiii" class="hover:text-[#aaa]">Instagram</a>
+            <div class="v-line"></div>
+            <a href="https://github.com/foreverstoboiii" class="hover:text-[#aaa]">Telegram</a>
+        </footer>
+
     </div>
 
-      <a href="./html_templates/about.html"
-      id="aboutus"
-        aria-label="About"
-        class="absolute top-4 right-[125px] h-11 px-5 flex items-center justify-center bg-white/5 backdrop-blur border border-white/10 rounded-full text-[#eaeaea] text-sm font-medium shadow z-[1000] transition-all duration-300 ease-in-out hover:scale-[1.02] hover:bg-white/10 hover:border-white/20"
-         data-i18n="about">
-        About
-       
-      </a>
-
-     <button
-        id="themetoggle"
-        aria-label="Смена темы"
-        class="absolute top-4 right-4 w-11 h-11 flex items-center justify-center bg-white/5 backdrop-blur border border-white/10 rounded-full text-[#eaeaea] text-[18px] shadow z-[1000] transition-all duration-500 ease-in-out hover:scale-[1.02] hover:bg-white/10 hover:border-white/20">
-     </button>
-
-     <button
-         id="lang-toggle"
-         aria-label="Смена языка"
-         class="absolute top-4 right-[70px] w-11 h-11 flex items-center justify-center bg-white/5 backdrop-blur border border-white/10 rounded-full text-[#eaeaea] text-[18px] shadow z-[1000] transition-all duration-50 ease-in-out hover:scale-[1.02] hover:bg-white/10 hover:border-white/20">🌐
-     </button>
-
-
-    </header>
-
-    <div id="weather" class="weather-widget"></div>
-
-
-    
-    <article class="colvo">
-      <div class="count" id="count" data-i18n="amount"></div>
-      <div id="search-status" ></div>
-      <div id="search-results" class="mt-4 space-y-3 w-full"></div>
-    </article>
-
-    <div id="custom-alert" class="modal">
-  <div class="modal-box">
-    <h2 data-i18n="modalTitle">Attention</h2>
-    <p id="alert-text" data-i18n="modalText"></p>
-    <button onclick="closeAlert()" data-i18n="ok">OK</button>
-  </div>
-</div>
-
-
-    <main class="listofbooks flex-1">
-      <section id="list"></section>
-    </main>
-
-    <footer class="flex justify-center items-center gap-2 py-4 text-sm text-[#888] text-center">
-      <a href="https://github.com/foreverstoboiii" class="hover:text-[#aaa]">GitHub</a>
-      <div class="v-line"></div>
-      <a href="https://github.com/foreverstoboiii" class="hover:text-[#aaa]">Instagram</a>
-      <div class="v-line"></div>
-      <a href="https://github.com/foreverstoboiii" class="hover:text-[#aaa]">Telegram</a>
-    </footer>
-
-  </div>
-  <script src="International.js"></script>
-  <script src="script.js"></script>
-  <!-- <script src="scripts/opensearch.js"></script> -->
+    <script src="International.js"></script>
+    <script src="script.js"></script>
+    <script src="scripts/opensearch.js"></script>
 </body>
-
 </html>

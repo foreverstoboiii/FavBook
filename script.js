@@ -171,7 +171,7 @@ function handleEnter(event) {
 
 document.addEventListener("keydown", function (e) {
     // Проверяем, что нажата именно клавиша \
-    if (e.key === "\\") {
+    if (e.key === "/") {
         e.preventDefault(); // Отменяем стандартное действие (если есть)
         
         const searchInput = document.querySelector("#searchfav"); // ID поля поиска

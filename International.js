@@ -10,7 +10,16 @@ const translations = {
     modalTitle: "Attention!",
     fillFields: "Please fill in both fields!",
     cit: "Tashkent",
-    about: "About"
+    about: "About",
+    minChars: "Enter at least {min} characters...",
+    searching: "Searching for «{query}»...",
+    notFound: "No results found for «{query}»",
+    resultsFound: "{num} results found",
+    noTitle: "Untitled",
+    unknownAuthor: "Unknown author",
+    addedViaAddlist: "Added via addlist()",
+    savedOnServer: "Book saved on server. Refresh list if needed.",
+    addError: "Error adding book: "
   },
   ru: {
     title: "Избранные книги",
@@ -23,7 +32,16 @@ const translations = {
     modalTitle: "Внимание!",
     fillFields: "Пожалуйста, заполните оба поля!",
     cit: "Ташкент",
-    about: "О нас"
+    about: "О нас",
+    minChars: "Введите не менее {min} символов...",
+    searching: "Поиск «{query}»...",
+    notFound: "По запросу «{query}» ничего не найдено",
+    resultsFound: "Найдено {num} результатов",
+    noTitle: "Без названия",
+    unknownAuthor: "Неизвестный автор",
+    addedViaAddlist: "Добавлено через addlist()",
+    savedOnServer: "Книга сохранена на сервере (db.json). Обновите список, если нужно.",
+    addError: "Ошибка добавления книги: "
   }
 };
 

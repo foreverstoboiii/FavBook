@@ -1,4 +1,4 @@
-// opensearch.js — улучшенный и разделённый UI
+// opensearch.js — улучшенный и разделённый UI с поддержкой языка
 document.addEventListener('DOMContentLoaded', () => {
   const searchInput = document.getElementById('searchfav');
   if (!searchInput) {
@@ -6,15 +6,8 @@ document.addEventListener('DOMContentLoaded', () => {
     return;
   }
 
-  // вместо создания через JS:
-const statusBar = document.getElementById('search-status');
-const resultsContainer = document.getElementById('search-results');
-
-// вставляем: сначала статус, потом результаты
-const wrapper = searchInput.closest('.relative') || searchInput.parentNode;
-wrapper.insertAdjacentElement('afterend', statusBar);
-statusBar.insertAdjacentElement('afterend', resultsContainer);
-
+  const statusBar = document.getElementById('search-status');
+  const resultsContainer = document.getElementById('search-results');
 
   let timer = null;
   const MIN_LEN = 3;
@@ -25,7 +18,12 @@ statusBar.insertAdjacentElement('afterend', resultsContainer);
     const q = searchInput.value.trim();
 
     if (q.length < MIN_LEN) {
-      statusBar.textContent = `Введите не менее ${MIN_LEN} символов для поиска...`;
+      // Используем перевод
+      if (translations && translations[currentLang] && translations[currentLang].minChars) {
+        statusBar.textContent = translations[currentLang].minChars.replace("{min}", MIN_LEN);
+      } else {
+        statusBar.textContent = `Введите не менее ${MIN_LEN} символов для поиска...`;
+      }
       resultsContainer.innerHTML = '';
       return;
     }
@@ -37,7 +35,13 @@ statusBar.insertAdjacentElement('afterend', resultsContainer);
   });
 
   async function doSearch(query) {
-    statusBar.textContent = `Поиск «${escapeHtml(query)}»...`;
+    // Перевод текста "Поиск «...»..."
+    if (translations && translations[currentLang] && translations[currentLang].searching) {
+      statusBar.textContent = translations[currentLang].searching.replace("{query}", query);
+    } else {
+      statusBar.textContent = `Поиск «${query}»...`;
+    }
+
     resultsContainer.innerHTML = '';
 
     try {
@@ -48,45 +52,46 @@ statusBar.insertAdjacentElement('afterend', resultsContainer);
       renderResults(data.docs || [], query, data.numFound);
     } catch (err) {
       console.error('opensearch: ошибка запроса', err);
-      statusBar.textContent = `Ошибка: ${escapeHtml(String(err.message || err))}`;
+      statusBar.textContent = `Ошибка: ${String(err.message || err)}`;
     }
   }
 
   function renderResults(docs, query, numFound) {
-  if (!docs || docs.length === 0) {
-    statusBar.textContent = `По запросу «${escapeHtml(query)}» ничего не найдено`;
-    resultsContainer.innerHTML = '';
-    return;
+    if (!docs || docs.length === 0) {
+      if (translations && translations[currentLang] && translations[currentLang].notFound) {
+        statusBar.textContent = translations[currentLang].notFound.replace("{query}", query);
+      } else {
+        statusBar.textContent = `По запросу «${query}» ничего не найдено`;
+      }
+      resultsContainer.innerHTML = '';
+      return;
+    }
+
+    // Перевод "X результатов по поиску"
+    if (translations && translations[currentLang] && translations[currentLang].resultsFound) {
+      statusBar.textContent = translations[currentLang].resultsFound.replace("{num}", numFound);
+    } else {
+      statusBar.textContent = `${numFound ? numFound.toLocaleString() + ' результатов по поиску' : ''}`;
+    }
+
+    resultsContainer.innerHTML = docs.slice(0, 10).map(doc => {
+      const title = doc.title ? doc.title : translations[currentLang]?.noTitle || 'Без названия';
+      const author = (doc.author_name && doc.author_name.length) ? doc.author_name[0] : translations[currentLang]?.unknownAuthor || 'Неизвестный автор';
+      const year = doc.first_publish_year ? ` • ${doc.first_publish_year}` : '';
+
+      return `
+        <div class="list-item">
+          <div class="book-info" title="${title} - ${author}">
+            <span class="book-title">${title}</span>
+            <span class="book-author">${author}</span>
+          </div>
+          <div class="book-meta">
+            <span class="book-year">${year}</span>
+          </div>
+        </div>
+      `;
+    }).join('');
   }
-
-  statusBar.textContent = `${numFound ? numFound.toLocaleString() + ' результатов' : ''}`;
-  resultsContainer.innerHTML = docs.slice(0, 10).map(doc => {
-    const title = doc.title ? escapeHtml(doc.title) : 'Без названия';
-    const author = (doc.author_name && doc.author_name.length) ? escapeHtml(doc.author_name[0]) : 'Неизвестный автор';
-    const year = doc.first_publish_year ? ` • ${escapeHtml(String(doc.first_publish_year))}` : '';
-
-    const safeTitle = encodeURIComponent(doc.title || '');
-    const safeAuthor = encodeURIComponent(doc.author_name ? doc.author_name[0] : '');
-
-    return `
-      <div class="flex w-full justify-between items-center border border-[#2a2d2f] bg-[#202324] rounded-lg px-3 py-2 hover:bg-[#26292b] transition">
-        <div class="flex-1">
-          <div class="text-sm font-semibold text-white">${title}</div>
-          <div class="text-xs text-gray-400">${author}${year}</div>
-        </div>
-        <div>
-          <button 
-            class="add-from-search px-3 py-1.5 text-xs rounded-lg bg-[#2e3133] border border-[#444] text-gray-200 hover:bg-[#3a3d3f] active:scale-95 transition"
-            data-title="${safeTitle}" 
-            data-author="${safeAuthor}">
-            Add
-          </button>
-        </div>
-      </div>
-    `;
-  }).join('');
-}
-
 
   resultsContainer.addEventListener('click', async (e) => {
     const btn = e.target.closest('.add-from-search');
@@ -94,7 +99,6 @@ statusBar.insertAdjacentElement('afterend', resultsContainer);
     const title = decodeURIComponent(btn.dataset.title || '');
     const author = decodeURIComponent(btn.dataset.author || '');
     const cover = decodeURIComponent(btn.dataset.cover || '');
-    console.log('opensearch: добавить книгу', { title, author, cover });
     await addBookFromSearch({ title, author, cover });
   });
 
@@ -102,13 +106,13 @@ statusBar.insertAdjacentElement('afterend', resultsContainer);
     try {
       if (typeof window.addlist === 'function') {
         window.addlist(title, author);
-        alert('Добавлено через addlist()');
+        alert(translations[currentLang]?.addedViaAddlist || 'Добавлено через addlist()');
         return;
       }
 
       const payload = {
         id: Date.now(),
-        name: title || 'Untitled',
+        name: title || translations[currentLang]?.untitled || 'Untitled',
         author: author || '',
         cover: cover || '',
         favourite: false
@@ -121,21 +125,14 @@ statusBar.insertAdjacentElement('afterend', resultsContainer);
       });
 
       if (!res.ok) throw new Error('Сервер вернул ' + res.status);
-      alert('Книга сохранена на сервере (db.json). Обновите список, если нужно.');
+      alert(translations[currentLang]?.savedOnServer || 'Книга сохранена на сервере (db.json). Обновите список, если нужно.');
     } catch (err) {
       console.error('opensearch: не удалось добавить книгу', err);
-      alert('Ошибка добавления книги: ' + (err.message || err));
+      alert((translations[currentLang]?.addError || 'Ошибка добавления книги: ') + (err.message || err));
     }
-  }
-
-  function escapeHtml(str) {
-    return String(str)
-      .replace(/&/g, '&amp;')
-      .replace(/</g, '&lt;')
-      .replace(/>/g, '&gt;')
-      .replace(/"/g, '&quot;')
-      .replace(/'/g, '&#039;');
   }
 
   console.log('opensearch.js загружен — слушаю #searchfav');
 });
+
+
