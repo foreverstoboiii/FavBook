@@ -6,15 +6,9 @@ document.addEventListener('DOMContentLoaded', () => {
     return;
   }
 
-  /// создаём статусбар
-const statusBar = document.createElement('div');
-statusBar.id = 'search-status';
-statusBar.className = 'mt-2 text-sm text-gray-400';
-
-// создаём контейнер для результатов
-const resultsContainer = document.createElement('div');
-resultsContainer.id = 'search-results';
-resultsContainer.className = 'mt-4 space-y-3';
+  // вместо создания через JS:
+const statusBar = document.getElementById('search-status');
+const resultsContainer = document.getElementById('search-results');
 
 // вставляем: сначала статус, потом результаты
 const wrapper = searchInput.closest('.relative') || searchInput.parentNode;
@@ -59,45 +53,40 @@ statusBar.insertAdjacentElement('afterend', resultsContainer);
   }
 
   function renderResults(docs, query, numFound) {
-    if (!docs || docs.length === 0) {
-      statusBar.textContent = `По запросу «${escapeHtml(query)}» ничего не найдено`;
-      resultsContainer.innerHTML = '';
-      return;
-    }
-
-    statusBar.textContent = `${numFound ? numFound.toLocaleString() + ' результатов' : ''}`;
-    resultsContainer.innerHTML = docs.slice(0, 10).map(doc => {
-      const title = doc.title ? escapeHtml(doc.title) : 'Без названия';
-      const author = (doc.author_name && doc.author_name.length) ? escapeHtml(doc.author_name[0]) : 'Неизвестный автор';
-      const year = doc.first_publish_year ? ` • ${escapeHtml(String(doc.first_publish_year))}` : '';
-      const cover = doc.cover_i
-        ? `https://covers.openlibrary.org/b/id/${doc.cover_i}-M.jpg`
-        : 'https://via.placeholder.com/80x120?text=No+Cover';
-
-      const safeTitle = encodeURIComponent(doc.title || '');
-      const safeAuthor = encodeURIComponent(doc.author_name ? doc.author_name[0] : '');
-      const safeCover = encodeURIComponent(cover);
-
-      return `
-        <div class="flex gap-4 items-center border border-[#2a2d2f] bg-[#202324] rounded-lg p-3 hover:bg-[#26292b] transition">
-          <img src="${cover}" loading="lazy" alt="${title}" class="w-[55px] h-[80px] object-cover rounded-md"/>
-          <div class="flex-1">
-            <div class="text-sm font-semibold text-white">${title}</div>
-            <div class="text-xs text-gray-400">${author}${year}</div>
-          </div>
-          <div>
-            <button 
-              class="add-from-search px-3 py-1.5 text-xs rounded-lg bg-[#2e3133] border border-[#444] text-gray-200 hover:bg-[#3a3d3f] active:scale-95 transition"
-              data-title="${safeTitle}" 
-              data-author="${safeAuthor}" 
-              data-cover="${safeCover}">
-              Add
-            </button>
-          </div>
-        </div>
-      `;
-    }).join('');
+  if (!docs || docs.length === 0) {
+    statusBar.textContent = `По запросу «${escapeHtml(query)}» ничего не найдено`;
+    resultsContainer.innerHTML = '';
+    return;
   }
+
+  statusBar.textContent = `${numFound ? numFound.toLocaleString() + ' результатов' : ''}`;
+  resultsContainer.innerHTML = docs.slice(0, 10).map(doc => {
+    const title = doc.title ? escapeHtml(doc.title) : 'Без названия';
+    const author = (doc.author_name && doc.author_name.length) ? escapeHtml(doc.author_name[0]) : 'Неизвестный автор';
+    const year = doc.first_publish_year ? ` • ${escapeHtml(String(doc.first_publish_year))}` : '';
+
+    const safeTitle = encodeURIComponent(doc.title || '');
+    const safeAuthor = encodeURIComponent(doc.author_name ? doc.author_name[0] : '');
+
+    return `
+      <div class="flex w-full justify-between items-center border border-[#2a2d2f] bg-[#202324] rounded-lg px-3 py-2 hover:bg-[#26292b] transition">
+        <div class="flex-1">
+          <div class="text-sm font-semibold text-white">${title}</div>
+          <div class="text-xs text-gray-400">${author}${year}</div>
+        </div>
+        <div>
+          <button 
+            class="add-from-search px-3 py-1.5 text-xs rounded-lg bg-[#2e3133] border border-[#444] text-gray-200 hover:bg-[#3a3d3f] active:scale-95 transition"
+            data-title="${safeTitle}" 
+            data-author="${safeAuthor}">
+            Add
+          </button>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
 
   resultsContainer.addEventListener('click', async (e) => {
     const btn = e.target.closest('.add-from-search');

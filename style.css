@@ -96,13 +96,24 @@ li {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #181a1b;
+  background-color: #1b1818;
   border: 1px solid #262a2b;
   padding: 14px 20px;
   border-radius: 6px;
   margin-bottom: 14px;
   
    
+}
+
+#opensearchlist{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #181a1b;
+  border: 1px solid #262a2b;
+  padding: 14px 20px;
+  border-radius: 6px;
+  margin-bottom: 14px;
 }
 .fade-in-up {
   opacity: 0;
@@ -335,6 +346,19 @@ footer a:hover {
   margin: 0 12px;
 }
 
+#search-status{
+    font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  color: #999;
+  margin-left: 3vh;
+  letter-spacing: 0.2px;
+  user-select: none;
+  margin-top: 10vh;
+  margin-bottom: 0%;
+    opacity: 0;
+    animation: FaDes 5s ease forwards;
+    animation-delay: (0s);
+}
 
 #count {
   font-family: 'Inter', sans-serif;
