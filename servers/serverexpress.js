@@ -7,6 +7,7 @@ const express = require('express');
 const path = require('path');
 const fs = require('fs');
 const { exec } = require("child_process");
+const os = require("os")
 
 const app = express();
 const PORT = 3000;
@@ -120,6 +121,20 @@ app.use((req, res) => {
 // Запуск сервера
 // =======================
 app.listen(PORT, () => {
-  console.log(`✅ Express server is running at: http://localhost:${PORT}`);
- exec(`start http://localhost:${PORT}`); // Windows
+  const url = `http://localhost:${PORT}`
+  console.log(`✅ Express server is running at:${url}`);
+
+
+  const platform = os.platform();
+
+
+  if (platform === "win32") {
+    // Windows
+    exec(`start ${url}`);
+  } else if (platform === "linux") {
+    // Termux (Android)
+    exec(`termux-open ${url}`, (err) => {
+      if (err) console.error("❌ Не удалось открыть браузер в Termux:", err);
+    });
+  }
 });
