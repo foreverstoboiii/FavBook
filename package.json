@@ -4,7 +4,8 @@
   "description": "FAVBOOK",
   "main": "script.js",
   "scripts": {
-    "start": "node ./servers/serverexpress.js"
+    "start": "node ./servers/serverexpress.js",
+    "dev": "node ./servers/serverexpress.js & npx open http://localhost:3000"
   },
   "repository": {
     "type": "git",
@@ -18,5 +19,8 @@
   "homepage": "https://github.com/foreverstoboiii/FavBook#readme",
   "dependencies": {
     "express": "^5.1.0"
+  },
+  "devDependencies": {
+    "open": "^10.2.0"
   }
 }

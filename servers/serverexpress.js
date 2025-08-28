@@ -6,6 +6,7 @@
 const express = require('express');
 const path = require('path');
 const fs = require('fs');
+const { exec } = require("child_process");
 
 const app = express();
 const PORT = 3000;
@@ -120,4 +121,5 @@ app.use((req, res) => {
 // =======================
 app.listen(PORT, () => {
   console.log(`✅ Express server is running at: http://localhost:${PORT}`);
+ exec(`start http://localhost:${PORT}`); // Windows
 });
