@@ -82,7 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
         </div>
         <div class="book-meta">
           <span class="book-year">${year}</span>
-          <button class="add-btn px-2 py-1 text-sm bg-blue-600 text-white rounded hover:bg-blue-700">Add</button>
+          <button class="add-btn px-2 py-1 text-sm bg-gray-600 text-white rounded hover:bg-blue-700">Add</button>
         </div>
       </div>
     `;
@@ -91,32 +91,32 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 document.addEventListener("click", (e) => {
-  if (e.target.classList.contains("add-btn")) {
-    const item = e.target.closest(".list-item");
-    const title = item.querySelector(".book-title").textContent;
-    const author = item.querySelector(".book-author").textContent;
-    const year = item.querySelector(".book-year").textContent;
+  const btn = e.target.closest(".add-btn");
+  if (!btn) return;
 
-    // создаём объект книги
-    const newBook = {
-      name: title,
-      author: author,
-      year: year,
-      date: new Date().toLocaleDateString(),
-      favorite: false
-    };
+  const item = btn.closest(".list-item");
+  const title = item.querySelector(".book-title")?.textContent || '';
+  const author = item.querySelector(".book-author")?.textContent || '';
+  const year = item.querySelector(".book-year")?.textContent || '';
 
-    // достаём список №2 из localStorage
-    let books = JSON.parse(localStorage.getItem("books")) || [];
-    books.push(newBook);
+  const newBook = {
+    name: title,
+    author: author,
+    year: year,
+    date: new Date().toLocaleDateString(),
+    favorite: false
+  };
 
-    // сохраняем обратно
-    localStorage.setItem("books", JSON.stringify(books));
+  let books = JSON.parse(localStorage.getItem("books")) || [];
+  books.push(newBook);
+  localStorage.setItem("books", JSON.stringify(books));
 
-    // перерисовываем список №2
-    // renderBookList();
-  }
+  // Временно убери, если нет такой функции:
+  // renderBookList();
+
+  console.log("Книга добавлена из поиска:", newBook);
 });
+
 
 
   console.log('opensearch.js загружен — слушаю #searchfav');
