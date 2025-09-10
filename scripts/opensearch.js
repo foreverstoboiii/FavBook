@@ -57,84 +57,67 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function renderResults(docs, query, numFound) {
-    if (!docs || docs.length === 0) {
-      if (translations && translations[currentLang] && translations[currentLang].notFound) {
-        statusBar.textContent = translations[currentLang].notFound.replace("{query}", query);
-      } else {
-        statusBar.textContent = `По запросу «${query}» ничего не найдено`;
-      }
-      resultsContainer.innerHTML = '';
-      return;
-    }
+  if (!docs || docs.length === 0) {
+    statusBar.textContent = translations?.[currentLang]?.notFound?.replace("{query}", query) 
+      || `По запросу «${query}» ничего не найдено`;
+    resultsContainer.innerHTML = '';
+    return;
+  }
 
-    // Перевод "X результатов по поиску"
-    if (translations && translations[currentLang] && translations[currentLang].resultsFound) {
-      statusBar.textContent = translations[currentLang].resultsFound.replace("{num}", numFound);
-    } else {
-      statusBar.textContent = `${numFound ? numFound.toLocaleString() + ' результатов по поиску' : ''}`;
-    }
+  statusBar.textContent = translations?.[currentLang]?.resultsFound?.replace("{num}", numFound)
+    || `${numFound.toLocaleString()} результатов по поиску`;
 
-    resultsContainer.innerHTML = docs.slice(0, 10).map(doc => {
-      const title = doc.title ? doc.title : translations[currentLang]?.noTitle || 'Без названия';
-      const author = (doc.author_name && doc.author_name.length) ? doc.author_name[0] : translations[currentLang]?.unknownAuthor || 'Неизвестный автор';
-      const year = doc.first_publish_year ? ` • ${doc.first_publish_year}` : '';
+  resultsContainer.innerHTML = docs.slice(0, 10).map(doc => {
+    const title = doc.title || translations?.[currentLang]?.noTitle || 'Без названия';
+    const author = (doc.author_name && doc.author_name.length) 
+      ? doc.author_name[0] 
+      : translations?.[currentLang]?.unknownAuthor || 'Неизвестный автор';
+    const year = doc.first_publish_year || ''; // ← теперь всегда span, без "•"
 
-      return `
-        <div class="list-item">
-          <div class="book-info" title="${title} - ${author}">
-            <span class="book-title">${title}</span>
-            <span class="book-author">${author}</span>
-          </div>
-          <div class="book-meta">
-            <span class="book-year">${year}</span>
-          </div>
-           <button class="favorite-btn text-2xl text-gray-500 hover:scale-90 transition duration-150 ease-in-out outline-none border-none">
-        ☆
-      </button>
+    return `
+      <div class="list-item">
+        <div class="book-info" title="${title} - ${author}">
+          <span class="book-title">${title}</span>
+          <span class="book-author">${author}</span>
         </div>
+        <div class="book-meta">
+          <span class="book-year">${year}</span>
+          <button class="add-btn px-2 py-1 text-sm bg-blue-600 text-white rounded hover:bg-blue-700">Add</button>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
 
-      `;
-    }).join('');
+
+document.addEventListener("click", (e) => {
+  if (e.target.classList.contains("add-btn")) {
+    const item = e.target.closest(".list-item");
+    const title = item.querySelector(".book-title").textContent;
+    const author = item.querySelector(".book-author").textContent;
+    const year = item.querySelector(".book-year").textContent;
+
+    // создаём объект книги
+    const newBook = {
+      name: title,
+      author: author,
+      year: year,
+      date: new Date().toLocaleDateString(),
+      favorite: false
+    };
+
+    // достаём список №2 из localStorage
+    let books = JSON.parse(localStorage.getItem("books")) || [];
+    books.push(newBook);
+
+    // сохраняем обратно
+    localStorage.setItem("books", JSON.stringify(books));
+
+    // перерисовываем список №2
+    // renderBookList();
   }
+});
 
-  resultsContainer.addEventListener('click', async (e) => {
-    const btn = e.target.closest('.add-from-search');
-    if (!btn) return;
-    const title = decodeURIComponent(btn.dataset.title || '');
-    const author = decodeURIComponent(btn.dataset.author || '');
-    const cover = decodeURIComponent(btn.dataset.cover || '');
-    await addBookFromSearch({ title, author, cover });
-  });
-
-  async function addBookFromSearch({ title, author, cover }) {
-    try {
-      if (typeof window.addlist === 'function') {
-        window.addlist(title, author);
-        alert(translations[currentLang]?.addedViaAddlist || 'Добавлено через addlist()');
-        return;
-      }
-
-      const payload = {
-        id: Date.now(),
-        name: title || translations[currentLang]?.untitled || 'Untitled',
-        author: author || '',
-        cover: cover || '',
-        favourite: false
-      };
-
-      const res = await fetch('/api/books', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
-      });
-
-      if (!res.ok) throw new Error('Сервер вернул ' + res.status);
-      alert(translations[currentLang]?.savedOnServer || 'Книга сохранена на сервере (db.json). Обновите список, если нужно.');
-    } catch (err) {
-      console.error('opensearch: не удалось добавить книгу', err);
-      alert((translations[currentLang]?.addError || 'Ошибка добавления книги: ') + (err.message || err));
-    }
-  }
 
   console.log('opensearch.js загружен — слушаю #searchfav');
 });
