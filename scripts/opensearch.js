@@ -88,7 +88,11 @@ document.addEventListener('DOMContentLoaded', () => {
           <div class="book-meta">
             <span class="book-year">${year}</span>
           </div>
+           <button class="favorite-btn text-2xl text-gray-500 hover:scale-90 transition duration-150 ease-in-out outline-none border-none">
+        ☆
+      </button>
         </div>
+
       `;
     }).join('');
   }
