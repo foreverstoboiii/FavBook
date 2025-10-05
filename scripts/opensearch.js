@@ -82,7 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
         </div>
         <div class="book-meta">
           <span class="book-year">${year}</span>
-          <button class="add-btn px-2 py-1 text-sm bg-gray-600 text-white rounded hover:bg-blue-700">Add</button>
+          <button class="add-btn px-2 py-1 text-sm bg-gray-600 text-white rounded hover:bg-blue-700">Add+</button>
         </div>
       </div>
     `;
